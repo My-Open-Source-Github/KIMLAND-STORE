@@ -806,7 +806,76 @@ let allProducts = [];
 const cartKey = 'store_cart_items';
 
 // Absolute base path calculation
-const basePath = '/';
+function getBasePath() {
+  const pathname = window.location.pathname;
+  let base = '/';
+  if (pathname.includes('/cart/')) {
+    base = pathname.substring(0, pathname.indexOf('/cart/')) + '/';
+  } else if (pathname.includes('/checkout/')) {
+    base = pathname.substring(0, pathname.indexOf('/checkout/')) + '/';
+  } else {
+    const lastSlash = pathname.lastIndexOf('/');
+    if (lastSlash >= 0) {
+      base = pathname.substring(0, lastSlash + 1);
+    }
+  }
+  return base;
+}
+
+const basePath = getBasePath();
+
+// Format dynamic route links for SPA / static hosting compatibility
+function getRouteLink(path) {
+  if (!path) return '#';
+  const bp = getBasePath();
+  if (path.includes('/brands/')) {
+    const brandsIndex = path.indexOf('/brands/');
+    const subpath = path.substring(brandsIndex);
+    return `${bp}index.html#${subpath}`;
+  }
+  if (path === '/cart/index.html' || path === 'cart/index.html') {
+    return `${bp}cart/index.html`;
+  }
+  if (path === '/checkout/index.html' || path === 'checkout/index.html') {
+    return `${bp}checkout/index.html`;
+  }
+  if (path === '/index.html' || path === 'index.html' || path === '/') {
+    return `${bp}index.html`;
+  }
+  return path;
+}
+
+// Automatically rewrite any links to use the correct base path and hash routing
+function fixAllNavigationLinks() {
+  const bp = getBasePath();
+  const links = document.querySelectorAll('a');
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+    
+    // Skip external/mailto/tel or hash-only links
+    if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http://') || href.startsWith('https://')) {
+      return;
+    }
+    
+    // Check if already rewritten to prevent duplicate manipulation
+    if (href.includes('#/brands/')) {
+      return;
+    }
+    
+    if (href.includes('/brands/')) {
+      const brandsIndex = href.indexOf('/brands/');
+      const subpath = href.substring(brandsIndex);
+      link.setAttribute('href', `${bp}index.html#${subpath}`);
+    } else if (href === '/cart/index.html' || href === 'cart/index.html') {
+      link.setAttribute('href', `${bp}cart/index.html`);
+    } else if (href === '/checkout/index.html' || href === 'checkout/index.html') {
+      link.setAttribute('href', `${bp}checkout/index.html`);
+    } else if (href === '/index.html' || href === 'index.html' || href === '/') {
+      link.setAttribute('href', `${bp}index.html`);
+    }
+  });
+}
 
 // Format currency in NGN Naira
 function formatCurrency(amount, currency = 'NGN') {
@@ -1068,7 +1137,17 @@ window.removeCartItem = function(id) {
 
 // Parse URL Slugs to dynamic context (routing helper)
 function parseUrlSlugs() {
-  const pathname = window.location.pathname;
+  let pathname = window.location.pathname;
+  const hash = window.location.hash;
+  
+  if (hash) {
+    if (hash.startsWith('#/')) {
+      pathname = hash.substring(1);
+    } else if (hash.startsWith('#')) {
+      pathname = '/' + hash.substring(1);
+    }
+  }
+  
   const context = {
     type: 'homepage', // homepage, brand, niche, merchandise, product, cart, checkout
     brand: null,
@@ -1292,13 +1371,14 @@ function showCompletionModal(ref) {
   const closeBtn = modal.querySelector('#close-modal-btn');
   closeBtn.addEventListener('click', () => {
     modal.remove();
-    const cleanUrl = '/index.html';
+    const cleanUrl = getRouteLink('/index.html');
     window.location.href = cleanUrl;
   });
 }
 
 // Initialize individual pages based on context
 async function initPage() {
+  fixAllNavigationLinks();
   await fetchProducts();
   updateCartBadge();
 
@@ -1346,6 +1426,8 @@ async function initPage() {
       renderDynamicPage(context, dynamicView, breadcrumbs);
     }
   }
+  
+  fixAllNavigationLinks();
 }
 
 // Render dynamic Breadcrumbs
@@ -1353,7 +1435,7 @@ function renderBreadcrumbs(breadcrumbsContainer, segments) {
   if (!breadcrumbsContainer) return;
   breadcrumbsContainer.style.display = 'block';
   
-  let html = `<a href="/index.html">Home</a>`;
+  let html = `<a href="${getRouteLink('/index.html')}">Home</a>`;
   let currentPath = '';
   
   segments.forEach((seg, idx) => {
@@ -1365,7 +1447,7 @@ function renderBreadcrumbs(breadcrumbsContainer, segments) {
       else if (idx === 1) currentPath = `/brands/${segments[0].slug}/${seg.slug}/index.html`;
       else if (idx === 2) currentPath = `/brands/${segments[0].slug}/${segments[1].slug}/${seg.slug}/index.html`;
       
-      html += `<a href="${currentPath}">${seg.name}</a>`;
+      html += `<a href="${getRouteLink(currentPath)}">${seg.name}</a>`;
     }
   });
   
@@ -1382,7 +1464,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
       <div style="text-align: center; padding: 4rem 0;">
         <h2>Brand Not Found</h2>
         <p class="text-muted">The requested brand "${brandSlug}" does not exist in the KIMLAND roster.</p>
-        <a href="/index.html" class="btn btn-primary" style="margin-top:1.5rem;">Return Home</a>
+        <a href="${getRouteLink('/index.html')}" class="btn btn-primary" style="margin-top:1.5rem;">Return Home</a>
       </div>
     `;
     return;
@@ -1412,7 +1494,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
         <p class="text-center text-muted" style="margin-bottom: 2.5rem; max-width:600px; margin-left:auto; margin-right:auto;">Choose a category to browse specific digital merchandise and blueprints.</p>
         <div class="brand-grid">
           ${Object.entries(brandInfo.niches).map(([nicheSlug, nicheData]) => `
-            <a href="/brands/${brandSlug}/${nicheSlug}/index.html" class="brand-card">
+            <a href="${getRouteLink(`/brands/${brandSlug}/${nicheSlug}/index.html`)}" class="brand-card">
               <div class="brand-img-wrapper">
                 <img src="${getNicheImage(brandSlug, nicheSlug)}" alt="${nicheData.name}" loading="lazy" referrerPolicy="no-referrer">
               </div>
@@ -1442,7 +1524,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
       brandProducts.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        const productLink = `/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`;
+        const productLink = getRouteLink(`/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`);
         
         card.innerHTML = `
           <div class="product-img-wrapper">
@@ -1483,7 +1565,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
         <div style="text-align: center; padding: 4rem 0;">
           <h2>Category Not Found</h2>
           <p class="text-muted">The requested niche category does not exist under ${brandInfo.name}.</p>
-          <a href="/brands/${brandSlug}/index.html" class="btn btn-primary" style="margin-top:1.5rem;">Back to ${brandInfo.name}</a>
+          <a href="${getRouteLink(`/brands/${brandSlug}/index.html`)}" class="btn btn-primary" style="margin-top:1.5rem;">Back to ${brandInfo.name}</a>
         </div>
       `;
       return;
@@ -1508,7 +1590,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
           <p class="text-center text-muted" style="margin-bottom: 2.5rem; max-width:600px; margin-left:auto; margin-right:auto;">Select specific licensing sections to view products under this niche category.</p>
           <div class="brand-grid">
             ${Object.entries(nicheInfo.merchandises).map(([merchSlug, merchName]) => `
-              <a href="/brands/${brandSlug}/${nicheSlug}/${merchSlug}/index.html" class="brand-card">
+              <a href="${getRouteLink(`/brands/${brandSlug}/${nicheSlug}/${merchSlug}/index.html`)}" class="brand-card">
                 <div class="brand-img-wrapper">
                   <img src="${getMerchandiseImage(brandSlug, nicheSlug, merchSlug)}" alt="${merchName}" loading="lazy" referrerPolicy="no-referrer">
                 </div>
@@ -1537,7 +1619,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
         nicheProducts.forEach(p => {
           const card = document.createElement('div');
           card.className = 'product-card';
-          const productLink = `/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`;
+          const productLink = getRouteLink(`/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`);
           
           card.innerHTML = `
             <div class="product-img-wrapper">
@@ -1577,7 +1659,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
           <div style="text-align: center; padding: 4rem 0;">
             <h2>Merchandise Class Not Found</h2>
             <p class="text-muted">The requested merchandise category does not exist under ${nicheInfo.name}.</p>
-            <a href="/brands/${brandSlug}/${nicheSlug}/index.html" class="btn btn-primary" style="margin-top:1.5rem;">Back to ${nicheInfo.name}</a>
+            <a href="${getRouteLink(`/brands/${brandSlug}/${nicheSlug}/index.html`)}" class="btn btn-primary" style="margin-top:1.5rem;">Back to ${nicheInfo.name}</a>
           </div>
         `;
         return;
@@ -1640,7 +1722,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
             <div style="text-align: center; padding: 4rem 0;">
               <h2>Asset Not Found</h2>
               <p class="text-muted">The requested licensing asset does not exist or has been archived.</p>
-              <a href="/brands/${brandSlug}/${nicheSlug}/${merchandiseSlug}/index.html" class="btn btn-primary" style="margin-top:1.5rem;">Return to ${merchName}</a>
+              <a href="${getRouteLink(`/brands/${brandSlug}/${nicheSlug}/${merchandiseSlug}/index.html`)}" class="btn btn-primary" style="margin-top:1.5rem;">Return to ${merchName}</a>
             </div>
           `;
           return;
@@ -1751,7 +1833,7 @@ function initHomepage() {
     featured.forEach(p => {
       const card = document.createElement('div');
       card.className = 'product-card';
-      const productLink = `/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`;
+      const productLink = getRouteLink(`/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`);
       
       card.innerHTML = `
         <div class="product-img-wrapper">
@@ -2033,7 +2115,7 @@ function initProductPage(brandSlug, nicheSlug, merchandiseSlug, productSlug) {
       if (relSec) relSec.style.display = 'none';
     } else {
       related.forEach(p => {
-        const productLink = `/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`;
+        const productLink = getRouteLink(`/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`);
         
         const card = document.createElement('div');
         card.className = 'product-card';
@@ -2250,3 +2332,31 @@ if (document.readyState === 'loading') {
 } else {
   initPage();
 }
+
+// Add event listeners for dynamic SPA hash routing and click interception
+window.addEventListener('hashchange', initPage);
+
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a');
+  if (!link) return;
+  
+  const href = link.getAttribute('href');
+  if (!href) return;
+  
+  // Skip external, mailto, tel, and already hash-based links
+  if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http://') || href.startsWith('https://')) {
+    return;
+  }
+  
+  // Intercept brand page links if we are on index.html
+  if (href.includes('/brands/')) {
+    const isIndexPage = window.location.pathname.endsWith('/index.html') || window.location.pathname.endsWith('/') || (!window.location.pathname.includes('/cart/') && !window.location.pathname.includes('/checkout/'));
+    
+    if (isIndexPage) {
+      e.preventDefault();
+      const brandsIndex = href.indexOf('/brands/');
+      const subpath = href.substring(brandsIndex);
+      window.location.hash = subpath;
+    }
+  }
+});
