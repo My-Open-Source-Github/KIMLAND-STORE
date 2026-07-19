@@ -1,0 +1,6 @@
+{
+  "name": "KIMLAND Store",
+  "description": "The official multi-brand online shop and licensing portal of KIMLAND, offering digital assets, architectural designs, physical designs, and professional consulting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

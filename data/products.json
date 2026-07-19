@@ -1,0 +1,441 @@
+[
+  {
+    "id": "creative-graphics-wallpapers-cyberpunk",
+    "slug": "cyberpunk-wallpapers",
+    "name": "Neo-Tokyo Cyberpunk 2D Wallpaper Pack",
+    "brand": "creative",
+    "brand_name": "Creative",
+    "niche": "wallpapers",
+    "niche_name": "Wallpapers",
+    "merchandise": "dark-mode-wallpapers",
+    "merchandise_name": "Dark Mode Wallpapers",
+    "price": 15000,
+    "old_price": 18500,
+    "currency": "NGN",
+    "stock": 50,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Immerse yourself in high-fidelity digital art with our exclusive Neo-Tokyo Cyberpunk 2D Wallpaper Pack. Professionally illustrated by the Creative team, these backdrops blend futuristic dystopian themes with retro synthwave lighting.</p><ul><li>Includes 10 unique, hand-painted digital paintings in 8K Ultra-HD</li><li>Includes aspect ratio variations optimized for both Ultra-Wide desktops and mobile devices</li><li>Comes with full personal licensing for multiple private screens</li></ul>",
+    "specs": {
+      "Format": "PNG / JPEG",
+      "Resolution": "7680 x 4320 (8K)",
+      "Style": "Digital Painting / Cyberpunk",
+      "License": "Personal / Non-Commercial"
+    },
+    "seo_title": "Buy Neo-Tokyo Cyberpunk 2D Wallpaper Pack - Creative",
+    "seo_desc": "Get the ultimate Neo-Tokyo 8K digital art wallpapers hand-painted by Creative. Perfect for desktop and mobile displays."
+  },
+  {
+    "id": "creative-graphics-uiux-modern-ecommerce",
+    "slug": "modern-ecommerce-ui-kit",
+    "name": "SleekFlow Modern E-Commerce UI Kit",
+    "brand": "creative",
+    "brand_name": "Creative",
+    "niche": "uiux-designs",
+    "niche_name": "UI/UX Designs",
+    "merchandise": "ecommerce-ui-kits",
+    "merchandise_name": "E-commerce UI Kits",
+    "price": 45000,
+    "old_price": 60000,
+    "currency": "NGN",
+    "stock": 100,
+    "featured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Build gorgeous online shops faster with SleekFlow. This state-of-the-art UI kit contains comprehensive components built strictly using professional vector shapes and modern responsive principles.</p><ul><li>120+ responsive modules, dynamic grids, and input elements</li><li>Complete checkout, dashboard, and cart layout templates in light and dark variations</li><li>Fully customizable fonts, layout systems, and global color variables</li></ul>",
+    "specs": {
+      "Format": "Figma (.fig) / Sketch",
+      "Grid System": "Bootstrap 12-Column / Flex",
+      "Software": "Figma 2026 / Sketch",
+      "License": "Commercial License Included"
+    },
+    "seo_title": "Buy SleekFlow Modern E-Commerce UI Kit - Creative",
+    "seo_desc": "Accelerate your storefront design with the SleekFlow vector-based UI kit. Over 120 custom sections fully customizable in Figma."
+  },
+  {
+    "id": "creative3d-gamedev-godotscenes-rpgdungeon",
+    "slug": "rpg-dungeon-3d-scene",
+    "name": "RPG Dungeon Crawler 3D Godot Scene",
+    "brand": "creative3d",
+    "brand_name": "Creative3D",
+    "niche": "godot-scenes-3d",
+    "niche_name": "3D Godot Scenes",
+    "merchandise": "environment-scenes",
+    "merchandise_name": "Environment Scenes",
+    "price": 95000,
+    "old_price": 120000,
+    "currency": "NGN",
+    "stock": 30,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1612287230202-1bf1d85d1bdf?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Boot up your next adventure with our turnkey RPG Dungeon Crawler 3D Scene. Pre-configured for Godot 4, this package features advanced volumetric lighting, modular wall alignments, and seamless physics layers.</p><ul><li>Optimized collision geometries and automatic navigation mesh grids</li><li>Fully integrated custom shader variables for realistic stone moss and humidity</li><li>Low-poly, high-fidelity modeling optimized for mobile and desktop runtimes</li></ul>",
+    "specs": {
+      "Engine": "Godot 4.x+",
+      "File Format": ".tscn / .blend",
+      "Triangles": "45K total scene",
+      "Textures": "2K PBR (Diff, Normal, Rough)"
+    },
+    "seo_title": "Buy RPG Dungeon Crawler 3D Godot Scene - Creative3D",
+    "seo_desc": "Kickstart your indie game development with a pre-configured Godot 4.x modular 3D dungeon crawler scene."
+  },
+  {
+    "id": "creative2d-gamedev-godotassets-metroidvania",
+    "slug": "metroidvania-sprite-pack",
+    "name": "Cyber-Knight 2D Metroidvania Sprite Pack",
+    "brand": "creative2d",
+    "brand_name": "Creative2D",
+    "niche": "godot-assets-2d",
+    "niche_name": "2D Godot Assets",
+    "merchandise": "sprite-sheets",
+    "merchandise_name": "Sprite Sheets",
+    "price": 25000,
+    "old_price": 32000,
+    "currency": "NGN",
+    "stock": 40,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Infuse classic retro physics into your games. The Cyber-Knight 2D Metroidvania Sprite Pack contains pixel-perfect, liquid-smooth animations hand-crafted frame-by-frame by Creative2D game artists.</p><ul><li>45 fluid, loops-tested states (Idle, Run, Sliding, Multi-Slash, Death)</li><li>Transparent individual PNG layers and aligned horizontal spritesheets</li><li>Ready-to-use Godot AnimatedSprite2D and AnimationPlayer configurations</li></ul>",
+    "specs": {
+      "Format": "PNG Sheet / Aseprite",
+      "Dimensions": "64 x 64 pixels per frame",
+      "Frame Count": "360 total frames",
+      "Palette": "Modern Cyberpunk (32 colors)"
+    },
+    "seo_title": "Buy Cyber-Knight 2D Metroidvania Sprites - Creative2D",
+    "seo_desc": "Get the elite, frame-by-frame 2D character sprite sheet optimized for retro action platforms and Godot."
+  },
+  {
+    "id": "creative-design-cgi-models-mecha",
+    "slug": "futuristic-mecha-3d-model",
+    "name": "Tactical Heavy Mecha 3D Model",
+    "brand": "creative-design",
+    "brand_name": "Creative Design",
+    "niche": "modeling-3d",
+    "niche_name": "3D Modeling",
+    "merchandise": "hard-surface-models",
+    "merchandise_name": "Hard Surface Models",
+    "price": 75000,
+    "old_price": 95000,
+    "currency": "NGN",
+    "stock": 25,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Unlock production-grade visual power. This Tactical Heavy Mecha model is designed for film VFX or cinematic close-ups, boasting high-fidelity quad-based topology and realistic panel segmentation.</p><ul><li>Rigged using industry-standard bone frameworks in Blender</li><li>Complete 4K PBR textures with realistic scuffs, metal fatigue, and warning stencils</li><li>Easily importable into Unreal Engine, Unity, Blender, or Maya</li></ul>",
+    "specs": {
+      "Format": "FBX / OBJ / .blend",
+      "Polygons": "120,000 Quads",
+      "Rigged": "Yes (IK & FK controls)",
+      "Textures": "4K PBR UDIM workflow"
+    },
+    "seo_title": "Tactical Heavy Mecha 3D Model - Creative Design",
+    "seo_desc": "Purchase professional rigged 3D Mecha models complete with 4K PBR textures for cinema or games."
+  },
+  {
+    "id": "falcon-design-industrial-wood-scandinavian-chair",
+    "slug": "scandinavian-chair-blueprint",
+    "name": "Nordic Lounge Chair Manufacturing Blueprint",
+    "brand": "falcon-design",
+    "brand_name": "Falcon Design",
+    "niche": "wood-designs",
+    "niche_name": "Wood",
+    "merchandise": "furniture-designs",
+    "merchandise_name": "Furniture Designs",
+    "price": 35000,
+    "old_price": 45000,
+    "currency": "NGN",
+    "stock": 15,
+    "featured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Bring sophisticated Nordic furniture design to life in your facility. This industrial draft represents the pinnacle of minimal static aesthetics, crafted by Falcon Design experts.</p><ul><li>Includes fully nested CNC router cut paths in DWG/DXF formats</li><li>Includes high-resolution orthographic projection drafts with microscopic tolerances</li><li>Includes precise list of timber components, fasteners, and grain alignments</li></ul>",
+    "specs": {
+      "Format": "DWG / DXF / Vector PDF",
+      "Software": "AutoCAD / Illustrator",
+      "Material Recommendation": "Bent Ash or Oak plywood",
+      "CNC Ready": "Yes (tested paths)"
+    },
+    "seo_title": "Buy Nordic Lounge Chair Furniture Blueprints - Falcon Design",
+    "seo_desc": "Get industrial woodworking blueprints for Scandinavian lounge chair manufacturing. CNC ready layouts."
+  },
+  {
+    "id": "eggcellent-design-architecture-building-villa-plans",
+    "slug": "brutalist-villa-cad-plans",
+    "name": "Brutalist Cliffside Villa Complete CAD Plans",
+    "brand": "eggcellent-design",
+    "brand_name": "Eggcellent Design",
+    "niche": "building-design",
+    "niche_name": "Building Design",
+    "merchandise": "residential-designs",
+    "merchandise_name": "Residential Designs",
+    "price": 250000,
+    "old_price": 310000,
+    "currency": "NGN",
+    "stock": 10,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>A true architectural masterpiece. The Brutalist Cliffside Villa architectural plans package offers complete structural, hydraulic, and electrical drawings for a premium 3-level residential home.</p><ul><li>Over 50 sheets of highly detailed floorplans, section heights, and foundations</li><li>Pre-engineered concrete column positioning for cliff layouts</li><li>Complete SketchUp and BIM models with parametric textures</li></ul>",
+    "specs": {
+      "Format": "DWG / RVT / PDF",
+      "Total Area": "450 sqm / 3 Levels",
+      "Style": "Raw Brutalist / Concrete",
+      "BIM Aligned": "Yes (Revit compatible)"
+    },
+    "seo_title": "Brutalist Cliffside Villa Architecture CAD Plans - Eggcellent Design",
+    "seo_desc": "Invest in comprehensive CAD floorplans and Revit designs for Cliffside Brutalist Residential Villa."
+  },
+  {
+    "id": "upstudio-audio-beats-lofi-chill",
+    "slug": "lofi-chill-beat-pack",
+    "name": "Midnight Coffee Lofi Chill Beats",
+    "brand": "upstudio",
+    "brand_name": "Upstudio",
+    "niche": "beats",
+    "niche_name": "Beats",
+    "merchandise": "lo-fi-beats",
+    "merchandise_name": "Lo-Fi Beats",
+    "price": 18000,
+    "old_price": 25000,
+    "currency": "NGN",
+    "stock": 70,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Add instant chill vibes to your podcasts, background videos, streams, or games. Midnight Coffee is a professionally mastered and curated beat selection from the elite Upstudio producers.</p><ul><li>5 full tracks with high-fidelity WAV masters and MP3 files</li><li>Complete multitrack stems for custom editing or drum/bass separation</li><li>Fully royalty-free commercial synchronization rights included</li></ul>",
+    "specs": {
+      "Format": "WAV 24-bit / 44.1kHz",
+      "Total Tracks": "5 Beats + 40 individual stems",
+      "BPM Range": "72 - 85 BPM",
+      "License": "Commercial Synchronization"
+    },
+    "seo_title": "Buy Midnight Coffee Lofi Chill Beats - Upstudio",
+    "seo_desc": "Elevate your videos or games with a high-fidelity, royalty-free lofi background music collection."
+  },
+  {
+    "id": "alpaca-engineering-electronic-smart-thermostat",
+    "slug": "smart-iot-thermostat-schematics",
+    "name": "Smart IoT Thermostat Electronics & CAD Pack",
+    "brand": "alpaca",
+    "brand_name": "Alpaca",
+    "niche": "electronic-designs",
+    "niche_name": "Electronic Designs",
+    "merchandise": "iot-device-designs",
+    "merchandise_name": "IoT Device Designs",
+    "price": 150000,
+    "old_price": 180000,
+    "currency": "NGN",
+    "stock": 12,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1558002038-1055907df827?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Launch a consumer smart hardware appliance effortlessly. This industrial-grade pack contains mechanical CAD enclosures, tested electrical designs, and PCB gerbers verified by Alpaca engineering teams.</p><ul><li>High-performance schematics with integrated Wi-Fi and Bluetooth antennas</li><li>Complete STEP and IGES mechanical design files optimized for high-speed injection molding</li><li>Full bill of materials (BOM) with active manufacturer supplier links</li></ul>",
+    "specs": {
+      "CAD Enclosure": "STEP / IGES / SolidWorks",
+      "PCB Gerbers": "RS-274X standard",
+      "Layers": "4-Layer Impedance Aligned",
+      "Components": "Standard SMD / RoHS Compliant"
+    },
+    "seo_title": "Smart IoT Thermostat Electronic Designs - Alpaca",
+    "seo_desc": "Get industrial-grade smart thermostat schematics, PCB layouts, and plastic enclosure injection files."
+  },
+  {
+    "id": "coded-programming-websites-nextjs-portfolio",
+    "slug": "nextjs-portfolio-template",
+    "name": "Aura Premium Next.js Developer Portfolio",
+    "brand": "coded",
+    "brand_name": "Coded",
+    "niche": "websites",
+    "niche_name": "Websites",
+    "merchandise": "portfolio-websites",
+    "merchandise_name": "Portfolio Websites",
+    "price": 30000,
+    "old_price": 40000,
+    "currency": "NGN",
+    "stock": 150,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Command your web presence. Aura is a fully responsive Next.js portfolio website built for developers, designers, and system architects. Clean code architecture crafted by the Coded developer network.</p><ul><li>Pre-configured React Server Components with optimal static SEO metadata</li><li>Stunning fluid animations powered by Motion, combined with dark and light themes</li><li>Easy-to-edit markdown (.mdx) blog post structures and automated contact email routing</li></ul>",
+    "specs": {
+      "Tech Stack": "Next.js 15 / React 19 / Tailwind v4",
+      "Dependencies": "Motion, Lucide Icons, MDX",
+      "SEO Score": "100/100 Lighthouse checked",
+      "Responsive": "Fluid mobile + desktop scales"
+    },
+    "seo_title": "Aura Next.js Developer Portfolio Template - Coded",
+    "seo_desc": "Boost your authority with a Next.js 15 developer portfolio featuring motion animations and Tailwind CSS."
+  },
+  {
+    "id": "organicflow-fashion-clothing-oversized-hoodie",
+    "slug": "minimalist-oversized-hoodie-pattern",
+    "name": "Oversized Streetwear Hoodie Tech Pack",
+    "brand": "organic-flow",
+    "brand_name": "Organic Flow",
+    "niche": "clothing-designs",
+    "niche_name": "Clothing Designs",
+    "merchandise": "menswear-tech-packs",
+    "merchandise_name": "Menswear Tech Packs",
+    "price": 12000,
+    "old_price": 16000,
+    "currency": "NGN",
+    "stock": 80,
+    "featured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Step boldly into professional apparel production. Organic Flow presents the complete tech pack and grading pattern for a Scandinavian minimalist oversized hoodie.</p><ul><li>Includes multi-size grading layouts from XS up to XXL</li><li>Includes technical specs, seam allowances, and ribbing density details</li><li>Ready-to-cut vector patterns editable in Adobe Illustrator or Optitex</li></ul>",
+    "specs": {
+      "Format": "AI / DXF / PDF / Tech Pack",
+      "Seam Allowance": "1 cm preset",
+      "Grading Aligned": "XS, S, M, L, XL, XXL",
+      "Optimal Fabric": "Heavy French Terry / 400 GSM"
+    },
+    "seo_title": "Minimalist Streetwear Hoodie Tech Pack - Organic Flow",
+    "seo_desc": "Start clothing production with a ready-to-use oversized hoodie technical package and size grading."
+  },
+  {
+    "id": "mindshot-ai-images-avatars",
+    "slug": "cyberpunk-avatar-prompts-pack",
+    "name": "Cyberpunk Avatar Prompt & Image Collection",
+    "brand": "mindshot",
+    "brand_name": "Mindshot",
+    "niche": "ai-images",
+    "niche_name": "AI Images",
+    "merchandise": "product-images",
+    "merchandise_name": "Product Images",
+    "price": 8000,
+    "old_price": 12000,
+    "currency": "NGN",
+    "stock": 200,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Unlock AI artistic masterworks. Mindshot provides a curation of 100 high-fidelity futuristic cyberpunk portrait avatars paired with their exact neural prompt chains, ratios, and negative prompt seeds.</p><ul><li>Includes 100 ultra-high-resolution PNG renders for instant profile or branding use</li><li>Compatible with Midjourney, Stable Diffusion, and Gemini generation pipelines</li><li>Learn advanced prompting techniques for realistic lighting and cybernetic skin detail</li></ul>",
+    "specs": {
+      "Total Images": "100 Renders + Prompt Sheets",
+      "Resolution": "4096 x 4096 pixels",
+      "Compatibility": "Midjourney v6 / SDXL / Gemini",
+      "License": "Royalty-free personal and commercial"
+    },
+    "seo_title": "100 Cyberpunk Avatar AI Prompt Pack - Mindshot",
+    "seo_desc": "Get high-end AI portraits and copy-paste generation prompt templates for Midjourney and Stable Diffusion."
+  },
+  {
+    "id": "lightwork-vfx-smoke-overlays",
+    "slug": "cinematic-smoke-vfx-overlays",
+    "name": "Cinematic Volumetric Smoke Overlay Pack",
+    "brand": "lightwork",
+    "brand_name": "Lightwork",
+    "niche": "vfx",
+    "niche_name": "VFX",
+    "merchandise": "smoke-fog-grids",
+    "merchandise_name": "Smoke & Fog Grids",
+    "price": 22000,
+    "old_price": 29000,
+    "currency": "NGN",
+    "stock": 90,
+    "featured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Upgrade your video production with authentic, organic volumetric movement. Captured in studio using ultra-fast high-speed motion cameras and prime cinema glass, these presets from Lightwork inject true cinematic style into any timeline.</p><ul><li>25 drag-and-drop overlay clips including thick smoke curtains, elegant curls, and mist</li><li>Pre-keyed with transparent alpha backgrounds or easy-blend modes (Screen / Add)</li><li>Compatible with Premiere Pro, DaVinci Resolve, After Effects, and Final Cut Pro</li></ul>",
+    "specs": {
+      "Format": "QuickTime ProRes 4444 with Alpha",
+      "Resolution": "3840 x 2160 (4K UHD)",
+      "Frame Rate": "60 FPS (real slow-mo)",
+      "Total Assets": "25 high-quality overlays"
+    },
+    "seo_title": "4K Cinematic Volumetric Smoke Overlays - Lightwork",
+    "seo_desc": "Buy premium real organic volumetric smoke video overlays. Aligned pre-keyed ProRes files for video editing."
+  },
+  {
+    "id": "diy-science-reactor-algae-guide",
+    "slug": "algae-bioreactor-diy-guide",
+    "name": "Home Algae Bioreactor Design Methodology",
+    "brand": "diy",
+    "brand_name": "DIY",
+    "niche": "research",
+    "niche_name": "Research",
+    "merchandise": "material-research",
+    "merchandise_name": "Material Research",
+    "price": 40000,
+    "old_price": 55000,
+    "currency": "NGN",
+    "stock": 15,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Construct your own carbon-capture appliance. This experimental scientific methodology by DIY describes how to assemble a high-yield home bioreactor using simple, easily sourced off-the-shelf components.</p><ul><li>Includes mechanical layouts, gas-bubbler designs, and optimal light spectra requirements</li><li>Includes biochemical nutrient feeding formulations and cellular harvest cycles</li><li>Provides comprehensive formulas to track oxygen output and carbon sequestration efficiency</li></ul>",
+    "specs": {
+      "Format": "PDF eBook + CAD Drafts",
+      "Complexity": "Intermediate / Maker",
+      "CAD software": "Fusion 360 / PDF",
+      "Yield Estimate": "Sequestrates up to 2kg CO2/year"
+    },
+    "seo_title": "Carbon Capture Home Algae Bioreactor Blueprint - DIY",
+    "seo_desc": "Invest in a comprehensive scientific maker guide to assemble a home carbon-capture bioreactor with CAD models."
+  },
+  {
+    "id": "enlightener-business-coaching-saas-playbook",
+    "slug": "saas-scaling-playbook",
+    "name": "SaaS Scaling Playbook & HR Guide",
+    "brand": "enlightener",
+    "brand_name": "Enlightener",
+    "niche": "business-strategist",
+    "niche_name": "Business Strategist",
+    "merchandise": "product-strategy",
+    "merchandise_name": "Product Strategy",
+    "price": 65000,
+    "old_price": 85000,
+    "currency": "NGN",
+    "stock": 15,
+    "featured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80"
+    ],
+    "youtube": "https://www.youtube.com/embed/P80u3m_K9r8",
+    "description": "<p>Scale your SaaS startup with certainty. Written by veteran Enlightener consultants who advise Fortune 500 CEOs, this playbook offers actionable frameworks, HR models, and spreadsheet projections.</p><ul><li>Complete SaaS financial models, unit economics forecasting, and viral loop matrices</li><li>Executive templates for series-A pitching, equity compensation, and team hiring</li><li>Operational checklists for organizational HR structure and performance reviews</li></ul>",
+    "specs": {
+      "Format": "Interactive Workbook + Excel Sheet",
+      "Pages": "180-page strategic layout",
+      "Spreadsheets": "Pre-formulated financial models",
+      "Level": "Founder / CEO / VP"
+    },
+    "seo_title": "SaaS Scaling Playbook & HR Projections - Enlightener",
+    "seo_desc": "Shop elite corporate management handbooks and financial models compiled by Enlightener consultants."
+  }
+]

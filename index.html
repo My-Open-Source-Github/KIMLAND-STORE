@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KIMLAND | Elite Digital Marketing & Asset Conglomerate</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+
+    <!-- Sticky Header -->
+    <header id="main-header">
+      <div class="container header-inner">
+        <a href="/index.html" class="logo" id="logo-link">KIMLAND</a>
+        
+        <div class="search-bar" style="display: flex;">
+          <input type="text" class="header-search-input" placeholder="Search brands, niches, products..." id="search-input">
+          <button type="button" aria-label="Search" id="search-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+        </div>
+
+        <div class="header-icons">
+          <a href="/cart/index.html" class="icon-btn" id="cart-btn" aria-label="Cart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+            <span class="badge cart-badge" id="cart-badge-count" style="display: none;">0</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Unified Breadcrumbs Container -->
+    <nav class="breadcrumbs container" id="app-breadcrumbs" style="display: none; margin-top: 1rem;" aria-label="Breadcrumb">
+      <!-- Injected by store.js -->
+    </nav>
+
+    <!-- Main Container -->
+    <main id="app-container">
+      
+      <!-- Homepage Specific View -->
+      <div id="homepage-view">
+        <!-- Hero Banner -->
+        <section class="hero" id="hero-banner">
+          <div class="container hero-inner">
+            <div class="hero-content">
+              <span style="color:var(--color-accent); font-weight:700; text-transform:uppercase; letter-spacing:1.5px; font-size:0.875rem;">Digital Marketing & Licensing Conglomerate</span>
+              <h1 style="font-size: 3rem; line-height: 1.1; margin-top:0.5rem; margin-bottom:1.25rem;">KIMLAND Digital Commerce</h1>
+              <p>Welcome to KIMLAND, a premier digital marketing and asset licensing leader. We curate, develop, and market high-fidelity digital solutions, design templates, software suites, and physical design blueprints across our 14 elite subsidiary brands. Everything we produce is sold or licensed online with secure payments and instant global access.</p>
+              <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+                <a href="#brands" class="btn btn-primary">Our Brands</a>
+                <a href="#featured" class="btn btn-outline">Trending Products</a>
+              </div>
+            </div>
+            <div class="hero-image" style="display: flex; justify-content: center; align-items: center;">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80" alt="KIMLAND Digital Commerce" style="width: 100%; max-width: 450px; border-radius: var(--radius-card); box-shadow: var(--shadow-md); object-fit: cover;" loading="lazy">
+            </div>
+          </div>
+        </section>
+
+        <!-- 14 Brand Grid Section -->
+        <section class="brands-section container" id="brands">
+          <h2 class="text-center">Explore Our 14 Brands</h2>
+          <p class="text-center text-muted" style="margin-bottom: 2.5rem; max-width:650px; margin-left:auto; margin-right:auto;">Click on any of our specialized brands to explore their highly professionalized niche products and asset licensing catalogs.</p>
+          
+          <div class="brand-grid" id="homepage-brand-grid">
+            <!-- Brand 1: Eggcellent Design -->
+            <a href="/brands/eggcellent-design/index.html" class="brand-card" id="brand-eggcellent-design">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop&q=80" alt="Eggcellent Design" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Eggcellent Design</h3>
+                <p class="text-muted">Architectural & Modern Building Layouts</p>
+              </div>
+            </a>
+            <!-- Brand 2: Creative Design -->
+            <a href="/brands/creative-design/index.html" class="brand-card" id="brand-creative-design">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80" alt="Creative Design" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Creative Design</h3>
+                <p class="text-muted">3D Modeling, Textures, Animation & CGI</p>
+              </div>
+            </a>
+            <!-- Brand 3: Creative3D -->
+            <a href="/brands/creative3d/index.html" class="brand-card" id="brand-creative3d">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1612287230202-1bf1d85d1bdf?w=600&auto=format&fit=crop&q=80" alt="Creative3D" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Creative3D</h3>
+                <p class="text-muted">3D Game Development & Scene Blueprints</p>
+              </div>
+            </a>
+            <!-- Brand 4: Creative2D -->
+            <a href="/brands/creative2d/index.html" class="brand-card" id="brand-creative2d">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80" alt="Creative2D" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Creative2D</h3>
+                <p class="text-muted">2D Game Systems & Retro Sprites</p>
+              </div>
+            </a>
+            <!-- Brand 5: Falcon Design -->
+            <a href="/brands/falcon-design/index.html" class="brand-card" id="brand-falcon-design">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&auto=format&fit=crop&q=80" alt="Falcon Design" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Falcon Design</h3>
+                <p class="text-muted">Physical & Static Product Blueprints</p>
+              </div>
+            </a>
+            <!-- Brand 6: Creative -->
+            <a href="/brands/creative/index.html" class="brand-card" id="brand-creative">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80" alt="Creative" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Creative</h3>
+                <p class="text-muted">Digital Art & 2D Assets • Everything 2D</p>
+              </div>
+            </a>
+            <!-- Brand 7: Alpaca -->
+            <a href="/brands/alpaca/index.html" class="brand-card" id="brand-alpaca">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=600&auto=format&fit=crop&q=80" alt="Alpaca" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Alpaca</h3>
+                <p class="text-muted">Multidisciplinary Manufacturing Blueprints</p>
+              </div>
+            </a>
+            <!-- Brand 8: Organic Flow -->
+            <a href="/brands/organic-flow/index.html" class="brand-card" id="brand-organic-flow">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&auto=format&fit=crop&q=80" alt="Organic Flow" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Organic Flow</h3>
+                <p class="text-muted">Fashion Patterns, Shoes & Jewelry Blueprints</p>
+              </div>
+            </a>
+            <!-- Brand 9: Coded -->
+            <a href="/brands/coded/index.html" class="brand-card" id="brand-coded">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" alt="Coded" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Coded</h3>
+                <p class="text-muted">Software, Web Applications & Coding Tools</p>
+              </div>
+            </a>
+            <!-- Brand 10: Lightwork -->
+            <a href="/brands/lightwork/index.html" class="brand-card" id="brand-lightwork">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80" alt="Lightwork" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Lightwork</h3>
+                <p class="text-muted">Photography, Post-Production & VFX Assets</p>
+              </div>
+            </a>
+            <!-- Brand 11: UpStudio -->
+            <a href="/brands/upstudio/index.html" class="brand-card" id="brand-upstudio">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80" alt="UpStudio" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>UpStudio</h3>
+                <p class="text-muted">Sound Kits, Audio Beats & DAW Plugins</p>
+              </div>
+            </a>
+            <!-- Brand 12: Mindshot -->
+            <a href="/brands/mindshot/index.html" class="brand-card" id="brand-mindshot">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=600&auto=format&fit=crop&q=80" alt="Mindshot" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Mindshot</h3>
+                <p class="text-muted">AI Storytelling, Concepts & Video Prompts</p>
+              </div>
+            </a>
+            <!-- Brand 13: DIY -->
+            <a href="/brands/diy/index.html" class="brand-card" id="brand-diy">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=600&auto=format&fit=crop&q=80" alt="DIY" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>DIY</h3>
+                <p class="text-muted">Scientific Methodologies & Research Models</p>
+              </div>
+            </a>
+            <!-- Brand 14: Enlightener -->
+            <a href="/brands/enlightener/index.html" class="brand-card" id="brand-enlightener">
+              <div class="brand-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80" alt="Enlightener" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <div class="brand-info-content">
+                <h3>Enlightener</h3>
+                <p class="text-muted">Executive Coaching, Business Strategy & HR</p>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Featured Products Carousel -->
+        <section class="products-section container" id="featured" style="margin-bottom: 4rem;">
+          <h2>In-Demand Assets</h2>
+          <p class="text-muted" style="margin-bottom: 2rem;">Trending licenses and design assets available for instant download</p>
+          
+          <div class="carousel-wrapper" id="featured-carousel">
+            <!-- Products injected by store.js dynamically -->
+            <div style="text-align: center; padding: 2rem; width: 100%;" class="text-muted">Loading KIMLAND assets...</div>
+          </div>
+        </section>
+
+        <!-- Why Us Section -->
+        <section class="why-us" id="why-us-benefits" style="margin-bottom: 4rem;">
+          <div class="container">
+            <h2 class="text-center">Why Partner With KIMLAND?</h2>
+            <p class="text-center text-muted" style="margin-bottom: 3rem;">Premium quality, immediate delivery, and full licensing guarantees</p>
+            
+            <div class="why-grid">
+              <div class="why-card" id="why-card-delivery">
+                <div class="why-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <h3>Instant Digital Delivery</h3>
+                <p class="text-muted">Get immediate download links and licensing keys right inside your customer cabinet upon successful payment clearance.</p>
+              </div>
+              
+              <div class="why-card" id="why-card-payments">
+                <div class="why-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6v7z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3>Secured Paystack Transactions</h3>
+                <p class="text-muted">We process Naira (NGN) secure transactions. Fully compliant with modern encrypted PCI-DSS banking protocols.</p>
+              </div>
+              
+              <div class="why-card" id="why-card-returns">
+                <div class="why-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-square"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                </div>
+                <h3>Elite Quality Checked</h3>
+                <p class="text-muted">Every blueprint, CAD file, game plugin, and beat pack is verified by our master engineering and design teams for structural completeness.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Dynamic Views Container (Brand/Niche/Merchandise/Product details) -->
+      <div id="dynamic-view" class="container" style="display: none; min-height: 60vh; padding-top: 2rem; padding-bottom: 4rem;">
+        <!-- Loaded dynamically by store.js depending on URL -->
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-col" id="footer-col-about" style="grid-column: 1 / -1; margin-bottom: 2rem;">
+          <a href="/index.html" class="logo" style="color:var(--color-text-dark);margin-bottom:1rem;display:inline-block;">KIMLAND</a>
+          <p style="color:#CCCCCC;font-size:0.9375rem;margin-top:0.5rem;max-width:800px;">KIMLAND is a digital marketing and product licensing leader. Our online catalog houses thousands of professional-grade assets designed to streamline development and production cycles across our 14 elite subsidiary brands.</p>
+        </div>
+
+        <!-- BRAND STORE Column -->
+        <div class="footer-col" id="footer-col-brand-store">
+          <h4>Brand Store</h4>
+          <ul>
+            <li><a href="/brands/eggcellent-design/index.html">Eggcellent Design Store</a></li>
+            <li><a href="/brands/creative-design/index.html">Creative Design Store</a></li>
+            <li><a href="/brands/creative3d/index.html">Creative3D Store</a></li>
+            <li><a href="/brands/creative2d/index.html">Creative2D Store</a></li>
+            <li><a href="/brands/falcon-design/index.html">Falcon Design Store</a></li>
+            <li><a href="/brands/creative/index.html">Creative Store</a></li>
+            <li><a href="/brands/alpaca/index.html">Alpaca Store</a></li>
+            <li><a href="/brands/organic-flow/index.html">Organic Flow Store</a></li>
+            <li><a href="/brands/coded/index.html">Coded Store</a></li>
+            <li><a href="/brands/lightwork/index.html">Lightwork Store</a></li>
+            <li><a href="/brands/upstudio/index.html">UpStudio Store</a></li>
+            <li><a href="/brands/mindshot/index.html">Mindshot Store</a></li>
+            <li><a href="/brands/diy/index.html">DIY Store</a></li>
+            <li><a href="/brands/enlightener/index.html">Enlightener Store</a></li>
+          </ul>
+        </div>
+
+        <!-- BRAND BLOGS Column -->
+        <div class="footer-col" id="footer-col-brand-blogs">
+          <h4>Brand Blogs</h4>
+          <ul>
+            <li><a href="/brands/eggcellent-design/index.html">Eggcellent Design Blog</a></li>
+            <li><a href="/brands/creative-design/index.html">Creative Design Blog</a></li>
+            <li><a href="/brands/creative3d/index.html">Creative3D Blog</a></li>
+            <li><a href="/brands/creative2d/index.html">Creative2D Blog</a></li>
+            <li><a href="/brands/falcon-design/index.html">Falcon Design Blog</a></li>
+            <li><a href="/brands/creative/index.html">Creative Blog</a></li>
+            <li><a href="/brands/alpaca/index.html">Alpaca Blog</a></li>
+            <li><a href="/brands/organic-flow/index.html">Organic Flow Blog</a></li>
+            <li><a href="/brands/coded/index.html">Coded Blog</a></li>
+            <li><a href="/brands/lightwork/index.html">Lightwork Blog</a></li>
+            <li><a href="/brands/upstudio/index.html">UpStudio Blog</a></li>
+            <li><a href="/brands/mindshot/index.html">Mindshot Blog</a></li>
+            <li><a href="/brands/diy/index.html">DIY Blog</a></li>
+            <li><a href="/brands/enlightener/index.html">Enlightener Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- BRAND WEBSITE Column -->
+        <div class="footer-col" id="footer-col-brand-website">
+          <h4>Brand Website</h4>
+          <ul>
+            <li><a href="/brands/eggcellent-design/index.html">Eggcellent Design</a></li>
+            <li><a href="/brands/creative-design/index.html">Creative Design</a></li>
+            <li><a href="/brands/creative3d/index.html">Creative3D</a></li>
+            <li><a href="/brands/creative2d/index.html">Creative2D</a></li>
+            <li><a href="/brands/falcon-design/index.html">Falcon Design</a></li>
+            <li><a href="/brands/creative/index.html">Creative</a></li>
+            <li><a href="/brands/alpaca/index.html">Alpaca</a></li>
+            <li><a href="/brands/organic-flow/index.html">Organic Flow</a></li>
+            <li><a href="/brands/coded/index.html">Coded</a></li>
+            <li><a href="/brands/lightwork/index.html">Lightwork</a></li>
+            <li><a href="/brands/upstudio/index.html">UpStudio</a></li>
+            <li><a href="/brands/mindshot/index.html">Mindshot</a></li>
+            <li><a href="/brands/diy/index.html">DIY</a></li>
+            <li><a href="/brands/enlightener/index.html">Enlightener</a></li>
+          </ul>
+        </div>
+
+        <!-- About Column -->
+        <div class="footer-col" id="footer-col-about-us">
+          <h4>About</h4>
+          <ul>
+            <li><a href="/index.html">Who We Are</a></li>
+            <li><a href="/index.html">Company History</a></li>
+            <li><a href="/index.html">Core Values</a></li>
+            <li><a href="/index.html">Global Offices</a></li>
+          </ul>
+        </div>
+
+        <!-- Disclaimer Column -->
+        <div class="footer-col" id="footer-col-disclaimer">
+          <h4>Disclaimer</h4>
+          <ul>
+            <li><a href="/index.html">Licensing Terms</a></li>
+            <li><a href="/index.html">Liability Notice</a></li>
+            <li><a href="/index.html">Accuracy Statement</a></li>
+            <li><a href="/index.html">External Links</a></li>
+          </ul>
+        </div>
+
+        <!-- Terms and Conditions Column -->
+        <div class="footer-col" id="footer-col-terms">
+          <h4>Terms and Conditions</h4>
+          <ul>
+            <li><a href="/index.html">Terms of Service</a></li>
+            <li><a href="/index.html">Licensing Agreement</a></li>
+            <li><a href="/index.html">Acceptable Use Policy</a></li>
+            <li><a href="/index.html">Copyright Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Policy Column -->
+        <div class="footer-col" id="footer-col-privacy">
+          <h4>Privacy Policy</h4>
+          <ul>
+            <li><a href="/index.html">Privacy Statement</a></li>
+            <li><a href="/index.html">Cookie Policy</a></li>
+            <li><a href="/index.html">GDPR Compliance</a></li>
+            <li><a href="/index.html">Data Security</a></li>
+          </ul>
+        </div>
+
+        <!-- Help Column -->
+        <div class="footer-col" id="footer-col-help">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="/index.html">Help Center</a></li>
+            <li><a href="/index.html">FAQ Support</a></li>
+            <li><a href="/index.html">Submit a Ticket</a></li>
+            <li><a href="/index.html">Live Chat Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="footer-col" id="footer-col-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:licensing@kimland.com">licensing@kimland.com</a></li>
+            <li><a href="tel:+2348123456789">+234 812 345 6789</a></li>
+            <li><a href="/index.html">Office Locator</a></li>
+            <li><a href="/index.html">Media Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- FAQ Column -->
+        <div class="footer-col" id="footer-col-faq">
+          <h4>FAQ</h4>
+          <ul>
+            <li><a href="/index.html">Payment Queries</a></li>
+            <li><a href="/index.html">License Types</a></li>
+            <li><a href="/index.html">Asset Deliveries</a></li>
+            <li><a href="/index.html">Refund Policies</a></li>
+          </ul>
+        </div>
+
+        <!-- Management Team Column -->
+        <div class="footer-col" id="footer-col-management">
+          <h4>Management Team</h4>
+          <ul>
+            <li><a href="/index.html">Executive Board</a></li>
+            <li><a href="/index.html">Engineering Leads</a></li>
+            <li><a href="/index.html">Creative Directors</a></li>
+            <li><a href="/index.html">Brand Presidents</a></li>
+          </ul>
+        </div>
+
+        <!-- Sitemap Column -->
+        <div class="footer-col" id="footer-col-sitemap">
+          <h4>Sitemap</h4>
+          <ul>
+            <li><a href="/index.html">Homepage Map</a></li>
+            <li><a href="/index.html#brands">Brand Index</a></li>
+            <li><a href="/index.html">Category Directory</a></li>
+            <li><a href="/index.html">Full XML Sitemap</a></li>
+          </ul>
+        </div>
+
+        <!-- Feedback Column -->
+        <div class="footer-col" id="footer-col-feedback">
+          <h4>Feedback</h4>
+          <ul>
+            <li><a href="/index.html">Client Survey</a></li>
+            <li><a href="/index.html">Feature Request</a></li>
+            <li><a href="/index.html">Report an Issue</a></li>
+            <li><a href="/index.html">Write a Review</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Care Column -->
+        <div class="footer-col" id="footer-col-customer">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="/index.html#why-us-benefits">Secure Payments</a></li>
+            <li><a href="/index.html#why-us-benefits">Licensing Terms</a></li>
+            <li><a href="/cart/index.html">My Cart</a></li>
+            <li><a href="/checkout/index.html">Checkout</a></li>
+          </ul>
+        </div>
+
+        <!-- Community Column -->
+        <div class="footer-col" id="footer-col-community">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="/index.html">Developer Forum</a></li>
+            <li><a href="/index.html">Discord Guild</a></li>
+            <li><a href="/index.html">Partner Program</a></li>
+            <li><a href="/index.html">Social Channels</a></li>
+          </ul>
+        </div>
+
+        <!-- Recommendations Column -->
+        <div class="footer-col" id="footer-col-recommendations">
+          <h4>Recommendations</h4>
+          <ul>
+            <li><a href="/index.html#featured">Best Sellers</a></li>
+            <li><a href="/index.html#featured">Editor's Choice</a></li>
+            <li><a href="/index.html#featured">New Additions</a></li>
+            <li><a href="/index.html#featured">Curated Packs</a></li>
+          </ul>
+        </div>
+
+        <!-- Suggestions Column -->
+        <div class="footer-col" id="footer-col-suggestions">
+          <h4>Suggestions</h4>
+          <ul>
+            <li><a href="/index.html">Request Feature</a></li>
+            <li><a href="/index.html">Suggest Brand</a></li>
+            <li><a href="/index.html">Partner Proposals</a></li>
+            <li><a href="/index.html">Corporate Feedback</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="container footer-bottom">
+        <span>&copy; 2026 KIMLAND Inc. All rights reserved. Asset licensing and digital marketing solutions.</span>
+        <span>Secure checkout powered by Paystack</span>
+      </div>
+    </footer>
+
+    <!-- Store JS (absolute path ensures routing friendliness) -->
+    <script src="/assets/js/store.js"></script>
+  </body>
+</html>

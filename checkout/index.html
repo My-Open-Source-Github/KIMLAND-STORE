@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Checkout | KIMLAND Store</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+
+    <!-- Sticky Header -->
+    <header id="main-header">
+      <div class="container header-inner">
+        <a href="/index.html" class="logo" id="logo-link">KIMLAND</a>
+        
+        <div class="search-bar" style="display: flex;">
+          <input type="text" class="header-search-input" placeholder="Search brands, products..." id="search-input">
+          <button type="button" aria-label="Search" id="search-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+        </div>
+
+        <div class="header-icons">
+          <a href="/cart/index.html" class="icon-btn" id="cart-btn" aria-label="Cart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+            <span class="badge cart-badge" id="cart-badge-count" style="display: none;">0</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs container" aria-label="Breadcrumb" style="margin-top: 1rem;">
+      <a href="/index.html">Home</a>
+      <span>&gt;</span>
+      <a href="/cart/index.html">Cart</a>
+      <span>&gt;</span>
+      <span class="text-accent" style="font-weight: 600;">Checkout</span>
+    </nav>
+
+    <!-- Main Checkout Page Content -->
+    <main class="container" style="margin-top: 2rem; min-height: 60vh; margin-bottom: 4rem;">
+      <h1 style="font-size: 2.25rem; margin-bottom: 2rem;">Secure Checkout</h1>
+      
+      <div class="cart-layout">
+        
+        <!-- Delivery Shipping Details Form -->
+        <div style="background-color: var(--color-bg-white); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 2rem;">
+          <h3 style="font-size:1.375rem; margin-bottom: 1.5rem; display:flex; align-items:center; gap:0.5rem; border-bottom:1px solid var(--color-border); padding-bottom:0.75rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Billing & Delivery Information
+          </h3>
+          
+          <form id="checkout-form">
+            <div class="form-group">
+              <label for="checkout-name">Full Name *</label>
+              <input type="text" id="checkout-name" required placeholder="John Doe">
+            </div>
+            
+            <div class="form-group">
+              <label for="checkout-email">Email Address *</label>
+              <input type="email" id="checkout-email" required placeholder="johndoe@example.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="checkout-phone">Phone Number *</label>
+              <input type="tel" id="checkout-phone" required placeholder="+234 803 123 4567">
+            </div>
+            
+            <div class="form-group">
+              <label for="checkout-address">Delivery / Billing Address *</label>
+              <textarea id="checkout-address" rows="3" required placeholder="Apartment, Street Address, City, State, Nigeria"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-full" style="padding: 1rem; margin-top: 1.5rem; display:flex; gap:0.5rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              Pay with Paystack
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Side: Order Summary Panel -->
+        <div class="cart-summary" style="height: fit-content;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem;">Review Your Order</h3>
+          
+          <!-- Product list summary -->
+          <div id="checkout-items" style="max-height: 300px; overflow-y: auto; margin-bottom: 1.5rem;">
+            <!-- Checkout product lines injected by store.js -->
+          </div>
+
+          <!-- Totals container -->
+          <div id="checkout-summary">
+            <!-- Summary prices injected by store.js -->
+          </div>
+
+          <div style="margin-top: 2rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
+            <div style="display:flex; flex-direction:column; gap:1rem;">
+              <div class="badge-item" style="color:var(--color-text-dark); font-weight:600; font-size:0.8125rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock" style="color:var(--color-success);"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>PCI-DSS Compliant Encryption</span>
+              </div>
+              <p class="text-muted" style="font-size:0.75rem; line-height:1.4;">
+                We partner with Paystack to authorize card payments. No credit card or pin data is ever processed or saved on our servers.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-col" id="footer-col-about" style="grid-column: 1 / -1; margin-bottom: 2rem;">
+          <a href="/index.html" class="logo" style="color:var(--color-text-dark);margin-bottom:1rem;display:inline-block;">KIMLAND</a>
+          <p style="color:#CCCCCC;font-size:0.9375rem;margin-top:0.5rem;max-width:800px;">KIMLAND is a digital marketing and product licensing leader. Our online catalog houses thousands of professional-grade assets designed to streamline development and production cycles across our 14 elite subsidiary brands.</p>
+        </div>
+
+        <!-- BRAND STORE Column -->
+        <div class="footer-col" id="footer-col-brand-store">
+          <h4>Brand Store</h4>
+          <ul>
+            <li><a href="/brands/eggcellent-design/index.html">Eggcellent Design Store</a></li>
+            <li><a href="/brands/creative-design/index.html">Creative Design Store</a></li>
+            <li><a href="/brands/creative3d/index.html">Creative3D Store</a></li>
+            <li><a href="/brands/creative2d/index.html">Creative2D Store</a></li>
+            <li><a href="/brands/falcon-design/index.html">Falcon Design Store</a></li>
+            <li><a href="/brands/creative/index.html">Creative Store</a></li>
+            <li><a href="/brands/alpaca/index.html">Alpaca Store</a></li>
+            <li><a href="/brands/organic-flow/index.html">Organic Flow Store</a></li>
+            <li><a href="/brands/coded/index.html">Coded Store</a></li>
+            <li><a href="/brands/lightwork/index.html">Lightwork Store</a></li>
+            <li><a href="/brands/upstudio/index.html">UpStudio Store</a></li>
+            <li><a href="/brands/mindshot/index.html">Mindshot Store</a></li>
+            <li><a href="/brands/diy/index.html">DIY Store</a></li>
+            <li><a href="/brands/enlightener/index.html">Enlightener Store</a></li>
+          </ul>
+        </div>
+
+        <!-- BRAND BLOGS Column -->
+        <div class="footer-col" id="footer-col-brand-blogs">
+          <h4>Brand Blogs</h4>
+          <ul>
+            <li><a href="/brands/eggcellent-design/index.html">Eggcellent Design Blog</a></li>
+            <li><a href="/brands/creative-design/index.html">Creative Design Blog</a></li>
+            <li><a href="/brands/creative3d/index.html">Creative3D Blog</a></li>
+            <li><a href="/brands/creative2d/index.html">Creative2D Blog</a></li>
+            <li><a href="/brands/falcon-design/index.html">Falcon Design Blog</a></li>
+            <li><a href="/brands/creative/index.html">Creative Blog</a></li>
+            <li><a href="/brands/alpaca/index.html">Alpaca Blog</a></li>
+            <li><a href="/brands/organic-flow/index.html">Organic Flow Blog</a></li>
+            <li><a href="/brands/coded/index.html">Coded Blog</a></li>
+            <li><a href="/brands/lightwork/index.html">Lightwork Blog</a></li>
+            <li><a href="/brands/upstudio/index.html">UpStudio Blog</a></li>
+            <li><a href="/brands/mindshot/index.html">Mindshot Blog</a></li>
+            <li><a href="/brands/diy/index.html">DIY Blog</a></li>
+            <li><a href="/brands/enlightener/index.html">Enlightener Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- BRAND WEBSITE Column -->
+        <div class="footer-col" id="footer-col-brand-website">
+          <h4>Brand Website</h4>
+          <ul>
+            <li><a href="/brands/eggcellent-design/index.html">Eggcellent Design</a></li>
+            <li><a href="/brands/creative-design/index.html">Creative Design</a></li>
+            <li><a href="/brands/creative3d/index.html">Creative3D</a></li>
+            <li><a href="/brands/creative2d/index.html">Creative2D</a></li>
+            <li><a href="/brands/falcon-design/index.html">Falcon Design</a></li>
+            <li><a href="/brands/creative/index.html">Creative</a></li>
+            <li><a href="/brands/alpaca/index.html">Alpaca</a></li>
+            <li><a href="/brands/organic-flow/index.html">Organic Flow</a></li>
+            <li><a href="/brands/coded/index.html">Coded</a></li>
+            <li><a href="/brands/lightwork/index.html">Lightwork</a></li>
+            <li><a href="/brands/upstudio/index.html">UpStudio</a></li>
+            <li><a href="/brands/mindshot/index.html">Mindshot</a></li>
+            <li><a href="/brands/diy/index.html">DIY</a></li>
+            <li><a href="/brands/enlightener/index.html">Enlightener</a></li>
+          </ul>
+        </div>
+
+        <!-- About Column -->
+        <div class="footer-col" id="footer-col-about-us">
+          <h4>About</h4>
+          <ul>
+            <li><a href="/index.html">Who We Are</a></li>
+            <li><a href="/index.html">Company History</a></li>
+            <li><a href="/index.html">Core Values</a></li>
+            <li><a href="/index.html">Global Offices</a></li>
+          </ul>
+        </div>
+
+        <!-- Disclaimer Column -->
+        <div class="footer-col" id="footer-col-disclaimer">
+          <h4>Disclaimer</h4>
+          <ul>
+            <li><a href="/index.html">Licensing Terms</a></li>
+            <li><a href="/index.html">Liability Notice</a></li>
+            <li><a href="/index.html">Accuracy Statement</a></li>
+            <li><a href="/index.html">External Links</a></li>
+          </ul>
+        </div>
+
+        <!-- Terms and Conditions Column -->
+        <div class="footer-col" id="footer-col-terms">
+          <h4>Terms and Conditions</h4>
+          <ul>
+            <li><a href="/index.html">Terms of Service</a></li>
+            <li><a href="/index.html">Licensing Agreement</a></li>
+            <li><a href="/index.html">Acceptable Use Policy</a></li>
+            <li><a href="/index.html">Copyright Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Policy Column -->
+        <div class="footer-col" id="footer-col-privacy">
+          <h4>Privacy Policy</h4>
+          <ul>
+            <li><a href="/index.html">Privacy Statement</a></li>
+            <li><a href="/index.html">Cookie Policy</a></li>
+            <li><a href="/index.html">GDPR Compliance</a></li>
+            <li><a href="/index.html">Data Security</a></li>
+          </ul>
+        </div>
+
+        <!-- Help Column -->
+        <div class="footer-col" id="footer-col-help">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="/index.html">Help Center</a></li>
+            <li><a href="/index.html">FAQ Support</a></li>
+            <li><a href="/index.html">Submit a Ticket</a></li>
+            <li><a href="/index.html">Live Chat Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="footer-col" id="footer-col-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:licensing@kimland.com">licensing@kimland.com</a></li>
+            <li><a href="tel:+2348123456789">+234 812 345 6789</a></li>
+            <li><a href="/index.html">Office Locator</a></li>
+            <li><a href="/index.html">Media Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- FAQ Column -->
+        <div class="footer-col" id="footer-col-faq">
+          <h4>FAQ</h4>
+          <ul>
+            <li><a href="/index.html">Payment Queries</a></li>
+            <li><a href="/index.html">License Types</a></li>
+            <li><a href="/index.html">Asset Deliveries</a></li>
+            <li><a href="/index.html">Refund Policies</a></li>
+          </ul>
+        </div>
+
+        <!-- Management Team Column -->
+        <div class="footer-col" id="footer-col-management">
+          <h4>Management Team</h4>
+          <ul>
+            <li><a href="/index.html">Executive Board</a></li>
+            <li><a href="/index.html">Engineering Leads</a></li>
+            <li><a href="/index.html">Creative Directors</a></li>
+            <li><a href="/index.html">Brand Presidents</a></li>
+          </ul>
+        </div>
+
+        <!-- Sitemap Column -->
+        <div class="footer-col" id="footer-col-sitemap">
+          <h4>Sitemap</h4>
+          <ul>
+            <li><a href="/index.html">Homepage Map</a></li>
+            <li><a href="/index.html#brands">Brand Index</a></li>
+            <li><a href="/index.html">Category Directory</a></li>
+            <li><a href="/index.html">Full XML Sitemap</a></li>
+          </ul>
+        </div>
+
+        <!-- Feedback Column -->
+        <div class="footer-col" id="footer-col-feedback">
+          <h4>Feedback</h4>
+          <ul>
+            <li><a href="/index.html">Client Survey</a></li>
+            <li><a href="/index.html">Feature Request</a></li>
+            <li><a href="/index.html">Report an Issue</a></li>
+            <li><a href="/index.html">Write a Review</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Care Column -->
+        <div class="footer-col" id="footer-col-customer">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="/index.html#why-us-benefits">Secure Payments</a></li>
+            <li><a href="/index.html#why-us-benefits">Licensing Terms</a></li>
+            <li><a href="/cart/index.html">My Cart</a></li>
+            <li><a href="/checkout/index.html">Checkout</a></li>
+          </ul>
+        </div>
+
+        <!-- Community Column -->
+        <div class="footer-col" id="footer-col-community">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="/index.html">Developer Forum</a></li>
+            <li><a href="/index.html">Discord Guild</a></li>
+            <li><a href="/index.html">Partner Program</a></li>
+            <li><a href="/index.html">Social Channels</a></li>
+          </ul>
+        </div>
+
+        <!-- Recommendations Column -->
+        <div class="footer-col" id="footer-col-recommendations">
+          <h4>Recommendations</h4>
+          <ul>
+            <li><a href="/index.html#featured">Best Sellers</a></li>
+            <li><a href="/index.html#featured">Editor's Choice</a></li>
+            <li><a href="/index.html#featured">New Additions</a></li>
+            <li><a href="/index.html#featured">Curated Packs</a></li>
+          </ul>
+        </div>
+
+        <!-- Suggestions Column -->
+        <div class="footer-col" id="footer-col-suggestions">
+          <h4>Suggestions</h4>
+          <ul>
+            <li><a href="/index.html">Request Feature</a></li>
+            <li><a href="/index.html">Suggest Brand</a></li>
+            <li><a href="/index.html">Partner Proposals</a></li>
+            <li><a href="/index.html">Corporate Feedback</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="container footer-bottom">
+        <span>&copy; 2026 KIMLAND Inc. All rights reserved. Asset licensing and digital marketing solutions.</span>
+        <span>Secure checkout powered by Paystack</span>
+      </div>
+    </footer>
+
+    <!-- Store JS -->
+    <script src="/assets/js/store.js"></script>
+  </body>
+</html>
