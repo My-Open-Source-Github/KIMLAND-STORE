@@ -10,7 +10,7 @@ Welcome to the **KIMLAND Store** Master Operations and Management Guide. This do
 3. [Managing Jumia & Konga Style Bottom Storefront (`bottom_store_data.json`)](#3-managing-jumia--konga-style-bottom-storefront-bottom_store_datajson)
 4. [Managing Brands (`store.js`)](#4-managing-brands-storejs)
 5. [Paystack Payment Dashboard Setup (14+ Brands)](#5-paystack-payment-dashboard-setup-14-brands)
-6. [Cloudflare Deployment & Domain Management](#6-cloudflare-deployment--domain-management)
+6. [GitHub Pages & Cloudflare Deployment Guide (Full-Stack Setup)](#6-github-pages--cloudflare-deployment-guide-full-stack-setup)
 7. [Local Development, Building & Running](#7-local-development-building--running)
 8. [GitHub Synchronization & `CNAME` Preservation](#8-github-synchronization--cname-preservation)
 
@@ -300,35 +300,129 @@ Whenever you add a brand to `/assets/js/store.js`, add a matching key block at t
 
 ---
 
-## 6. Cloudflare Deployment & Domain Management
+## 6. GitHub Pages & Cloudflare Deployment Guide (Full-Stack Setup)
 
-KIMLAND is fully compatible with **Cloudflare**, providing ultra-fast content delivery, global DNS routing, DDoS protection, and SSL/TLS encryption.
+KIMLAND's dual-architecture combines the speed of static delivery with secure, live payment routing. Deploying this hybrid setup requires hosting your **frontend client-side files on GitHub Pages** (serving static assets ultra-fast) and your **dynamic Express endpoints on a Cloud Run container (or other Node backend)**, connected securely via **Cloudflare DNS proxy routing**.
 
-### 🌐 Setting up Custom Domain (`shop.kimland.name.ng`)
+---
+
+### 📦 Part 1: Files Partitioning (GitHub Pages vs. Cloudflare / Cloud Run)
+
+To run a secure e-commerce application, your workspace files must be split correctly between the static host and the private dynamic server:
+
+| Component / Layer | Hosting Location | Files Deployed / Residing There | Why This Partitioning Exists |
+| :--- | :--- | :--- | :--- |
+| **Static Frontend Web Client** | **GitHub Pages** (or Cloudflare Pages) | Everything compiled in `/dist/` after running `npm run build`: <br> • `index.html` <br> • CSS/JS static bundles <br> • Images, fonts, SVG icons <br> • Static storefront feeds (`/data/products.json`, `/data/bottom_store_data.json`) <br> • `/dist/CNAME` | Bypasses server latency entirely. Customers load the page layout, catalog feeds, and high-density Konga/Jumia bento cards directly from the nearest edge network node. |
+| **Dynamic Backend Engine & Secrets** | **Cloud Run** / **Node Backend Server** | • Compiled server runner (`dist/server.cjs`) <br> • Backend configurations (`/data/paystack_configs.json`) <br> • Global `package.json` with startup parameters | Keeps sensitive API keys, webhook handlers, payment initialization logic, and bank account parameters completely hidden from web browsers and inspection tools. |
+
+---
+
+### 🌐 Part 2: Step-by-Step GitHub Pages Deployment & Cloudflare DNS Connection
+
+#### Step 1: Deploy Frontend Static Files to GitHub Pages
+1. Build your static files locally or via your CI/CD toolchain:
+   ```bash
+   npm run build
+   ```
+2. Configure GitHub Pages on your repository:
+   - Go to your repository on GitHub.
+   - Click **Settings** -> **Pages** in the left sidebar.
+   - Under **Build and deployment**, select **Deploy from a branch** (choose `main` or a dedicated deployment branch like `gh-pages`).
+   - If using a pre-compiled branch, select the folder containing your public assets (e.g., `/` or `/dist`). If using source repository directly, set up a GitHub Actions workflow to auto-build your Vite files using npm.
+
+#### Step 2: Connect Custom Domain (`shop.kimland.name.ng`) in Cloudflare
+To protect your site from DDoS, secure it with SSL, and configure seamless request routing, proxy it through Cloudflare:
 1. Log into your **Cloudflare Dashboard**.
-2. Select your domain (`name.ng`) or add it.
-3. Go to **DNS Settings** -> **Records**.
-4. Add a new **CNAME** Record:
-   - **Type**: `CNAME`
-   - **Name**: `shop`
-   - **Target**: Your GitHub pages domain (e.g., `yourusername.github.io`) or your hosting endpoint (e.g., Cloud Run URL).
-   - **Proxy Status**: **Proxied (Orange Cloud)** (Highly recommended for speed and security).
-   - **TTL**: `Auto`
-5. Save the record.
+2. Select your domain (`name.ng`) or click "Add site" to import it.
+3. Update your domain's nameservers at your domain registrar (e.g., DomainKing or Whogohost) to point to the Cloudflare nameservers provided.
+4. Navigate to **DNS Settings** -> **Records** on Cloudflare:
+   - Add a new **CNAME** Record:
+     - **Type**: `CNAME`
+     - **Name**: `shop` (This maps to `shop.kimland.name.ng`)
+     - **Target**: Your GitHub Pages domain (e.g., `yourusername.github.io`).
+     - **Proxy Status**: **Proxied (Orange Cloud)**. (This is *critical* so Cloudflare can handle backend proxy rules, mask server IPs, and cache resources).
+     - **TTL**: `Auto`
+   - Click **Save**.
 
-### 🛡️ Recommended Cloudflare SSL/TLS Settings
-- Navigate to the **SSL/TLS** tab in Cloudflare.
-- Set encryption mode to **Full** or **Full (Strict)**. This ensures that payment transactions to and from the Paystack API are encrypted in transit.
+#### Step 3: Enforce SSL Encryption on Cloudflare
+1. Go to the **SSL/TLS** tab in Cloudflare.
+2. Under "Overview", set the SSL/TLS encryption mode to **Full** or **Full (Strict)**. This enforces an encrypted HTTPS handshake between:
+   - The user's browser and Cloudflare.
+   - Cloudflare and GitHub Pages / your Cloud Run server.
+3. Go to **SSL/TLS** -> **Edge Certificates**, and toggle on **Always Use HTTPS** to automatically redirect any `http://` traffic to `https://`.
 
-### 🚀 Deploying to Cloudflare Pages (Frontend Static Site)
-If you deploy the static portion of your store to Cloudflare Pages:
-1. Under **Workers & Pages**, click **Create application** -> **Pages**.
-2. Connect your GitHub repository.
-3. Configure your Build Settings:
-   - **Framework Preset**: `Vite`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-4. Deploy! Cloudflare Pages will automatically respect the static files and compile them seamlessly.
+---
+
+### 🔑 Part 3: Securing All API Keys & Credentials
+
+To protect your business from credential theft, fraudulent transactions, or compromised merchant accounts, you **must secure your Paystack Keys**:
+
+1. **Zero Client-Side Exposure**:
+   - The client-side scripts inside `store.js` must *never* reference secret keys. All API calls target local endpoint routes (like `/api/paystack/initialize`) instead of making direct browser-to-Paystack secret API calls.
+2. **Environment Variables Over Config Files**:
+   - For public GitHub repositories, **do not** commit your actual live Paystack keys inside `/data/paystack_configs.json`.
+   - Instead, declare your sensitive keys inside your production hosting environment (e.g., Cloud Run console or Heroku config variables) using standard names like:
+     - `PAYSTACK_SECRET_KEY`
+     - `PAYSTACK_PUBLIC_KEY`
+   - Our dynamic backend server is configured to prioritize these environment variables. When present, it automatically uses them to override any placeholder or JSON configurations, ensuring absolute code safety!
+3. **Directory Access Isolation**:
+   - Our Express server code in `server.ts` statically exposes *only* the compiled `/dist/` folder to the public:
+     ```js
+     app.use(express.static(path.join(process.cwd(), 'dist')));
+     ```
+   - This prevents web browsers from accessing raw server configuration files or directories like `/data/paystack_configs.json` or `/server.ts` through URL manipulation.
+
+---
+
+### ⚡ Part 4: Keeping Connection Live (GitHub Pages to Cloudflare Backend)
+
+Since GitHub Pages acts purely as a static asset server, it has no native runtime container to execute the backend Express server endpoints. If you host the frontend on GitHub Pages and the backend on a different platform (like Cloud Run), standard relative requests to `/api/paystack/initialize` will result in `404 Not Found` errors unless configured correctly.
+
+To keep the communication seamless and live, utilize one of these production-ready workflows:
+
+#### Method A: Cloudflare Reverse Proxy Rules (Highly Recommended & Easiest)
+This method keeps your frontend code 100% relative (using `/api/paystack/initialize`) and bypasses CORS (Cross-Origin Resource Sharing) browser restrictions automatically. Cloudflare intercepts traffic to your custom domain and routes static requests to GitHub Pages, while routing backend API requests directly to your Cloud Run URL!
+
+1. Deploy your backend Express server (including `dist/server.cjs` and `package.json`) to Google Cloud Run or Render, which yields an HTTPS service URL (e.g. `https://kimland-api-781126605893.run.app`).
+2. Log into **Cloudflare** and navigate to your domain dashboard.
+3. Click on **Rules** -> **Origin Rules** (or **Workers**, or **Page Rules** depending on your account subscription):
+   - **Create a Page Rule (or Transform Rule)**:
+     - If the URL matches: `shop.kimland.name.ng/api/*`
+     - Setting: **Forwarding URL** (or **Override Origin Address**)
+     - Match Type: **301/302 Redirect** (or rewrite the request origin behind the scenes directly to `https://kimland-api-781126605893.run.app/api/*`).
+   - *Alternative (Cloudflare Workers - Infinite Flexibility)*: Deploy a simple, ultra-fast 5-line Cloudflare Worker to act as an API Gateway proxy:
+     ```js
+     export default {
+       async fetch(request, env) {
+         const url = new URL(request.url);
+         if (url.pathname.startsWith('/api/')) {
+           // Rewrite request to dynamic Cloud Run backend
+           const backendUrl = 'https://kimland-api-781126605893.run.app' + url.pathname + url.search;
+           return fetch(new Request(backendUrl, request));
+         }
+         // Fallback directly to static GitHub Pages
+         return fetch(request);
+       }
+     };
+     ```
+   - **Result**: Frontend relative requests continue working natively with no code changes, under full HTTPS proxy protection!
+
+#### Method B: Split Subdomain Routing (CORS Method)
+If you prefer to separate frontend and backend domains completely:
+1. Map your frontend to `shop.kimland.name.ng` (pointing to GitHub Pages).
+2. Map your backend to `api.kimland.name.ng` using a DNS **CNAME** pointing directly to your Cloud Run / VPS application endpoint.
+3. Configure **CORS** in your Express server (`server.ts` / `server.cjs`) to allow requests originating from your frontend:
+   ```ts
+   import cors from 'cors';
+   app.use(cors({
+     origin: 'https://shop.kimland.name.ng',
+     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+     credentials: true
+   }));
+   ```
+4. Update the endpoint inside your client-side `/assets/js/store.js` file:
+   - Change `await fetch('/api/paystack/initialize', ...)`
+   - To: `await fetch('https://api.kimland.name.ng/api/paystack/initialize', ...)`
 
 ---
 
