@@ -1,0 +1,402 @@
+{
+  "home": {
+    "sections": [
+      {
+        "type": "categories",
+        "items": [
+          { "name": "Awoof Deals", "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=200&auto=format&fit=crop&q=80", "link": "#" },
+          { "name": "Hot Deals", "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200&auto=format&fit=crop&q=80", "link": "#" },
+          { "name": "CAD Blueprints", "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200&auto=format&fit=crop&q=80", "link": "#" },
+          { "name": "3D Models", "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200&auto=format&fit=crop&q=80", "link": "#" },
+          { "name": "Web Themes", "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=200&auto=format&fit=crop&q=80", "link": "#" },
+          { "name": "Laser Panels", "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=200&auto=format&fit=crop&q=80", "link": "#" },
+          { "name": "UI/UX Kits", "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=200&auto=format&fit=crop&q=80", "link": "#" }
+        ]
+      },
+      {
+        "type": "flash_sales",
+        "title": "Flash Sales",
+        "subtitle": "Limited quantities available for instant download",
+        "ends_at": "2026-12-31T23:59:59",
+        "products": [
+          {
+            "id": "creative-graphics-wallpapers-synthwave",
+            "name": "Synthwave Sunset 8K Wallpaper Pack",
+            "brand": "creative",
+            "brand_name": "Creative",
+            "price": 12000,
+            "old_price": 22200,
+            "discount": "-46%",
+            "items_left": 129,
+            "total_items": 250,
+            "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&auto=format&fit=crop&q=80",
+            "slug": "synthwave-sunset-wallpapers",
+            "niche": "wallpapers",
+            "merchandise": "minimal-wallpapers"
+          },
+          {
+            "id": "eggcellent-residential-duplex-classic",
+            "name": "5-Bedroom Modern Duplex CAD Blueprint",
+            "brand": "eggcellent-design",
+            "brand_name": "Eggcellent Design",
+            "price": 28000,
+            "old_price": 44000,
+            "discount": "-36%",
+            "items_left": 20,
+            "total_items": 50,
+            "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&auto=format&fit=crop&q=80",
+            "slug": "classic-modern-duplex-cad",
+            "niche": "residential",
+            "merchandise": "duplex-blueprints"
+          },
+          {
+            "id": "falcon-joinery-kitchen-island",
+            "name": "Luxury Marble Kitchen Island CAD Model",
+            "brand": "falcon-design",
+            "brand_name": "Falcon Design",
+            "price": 16799,
+            "old_price": 19024,
+            "discount": "-12%",
+            "items_left": 20,
+            "total_items": 40,
+            "image": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400&auto=format&fit=crop&q=80",
+            "slug": "luxury-kitchen-island-mapping",
+            "niche": "joinery",
+            "merchandise": "kitchen-panels"
+          },
+          {
+            "id": "coded-templates-saas-nexus",
+            "name": "Nexus Next.js SaaS Web Template",
+            "brand": "coded",
+            "brand_name": "Coded",
+            "price": 260420,
+            "old_price": 344450,
+            "discount": "-24%",
+            "items_left": 20,
+            "total_items": 35,
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&auto=format&fit=crop&q=80",
+            "slug": "nexus-saas-nextjs-template",
+            "niche": "saas",
+            "merchandise": "react-next-templates"
+          },
+          {
+            "id": "creative3d-scenes-showroom-car",
+            "name": "Realistic Studio Car Showroom 3D Scene",
+            "brand": "creative3d",
+            "brand_name": "Creative3D",
+            "price": 35000,
+            "old_price": 50000,
+            "discount": "-30%",
+            "items_left": 15,
+            "total_items": 30,
+            "image": "https://images.unsplash.com/photo-1563720223185-11003d516935?w=400&auto=format&fit=crop&q=80",
+            "slug": "car-showroom-studio-scene",
+            "niche": "scenes",
+            "merchandise": "interior-scenes"
+          },
+          {
+            "id": "upstudio-beats-cyberpunk-drive",
+            "name": "Synthwave Cyberpunk Dynamic Beat Pack",
+            "brand": "upstudio",
+            "brand_name": "UpStudio",
+            "price": 14500,
+            "old_price": 25000,
+            "discount": "-42%",
+            "items_left": 45,
+            "total_items": 100,
+            "image": "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?w=400&auto=format&fit=crop&q=80",
+            "slug": "cyberpunk-drive-wave-beats",
+            "niche": "beats",
+            "merchandise": "synthwave-beats"
+          }
+        ]
+      },
+      {
+        "type": "deals_of_the_day",
+        "title": "Deals of the Day",
+        "products": [
+          { "name": "3D Blender Models", "price": "₦399,555", "image": "https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=200&auto=format&fit=crop&q=80" },
+          { "name": "Architectural Blueprints", "price": "₦271,139", "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200&auto=format&fit=crop&q=80" },
+          { "name": "Premium Web Themes", "price": "₦96,999", "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=200&auto=format&fit=crop&q=80" },
+          { "name": "Audio Beat Packs", "price": "₦6,999", "image": "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?w=200&auto=format&fit=crop&q=80" },
+          { "name": "IoT Schematic Designs", "price": "₦150,000", "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&auto=format&fit=crop&q=80" }
+        ]
+      },
+      {
+        "type": "custom_catalog",
+        "title": "Konga Style Mega Deals",
+        "subtitle": "Highly requested architectural and design files with customizable limits",
+        "icon": "💎",
+        "banner_color": "linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%)",
+        "description": "Welcome to our customized Jumia/Konga category bento. This category can be fully configured, edited, and dynamically positioned anywhere on the storefront! You can specify custom gradients, description text write-ups, titles, and select exact products to showcase (which automatically synchronize with our global secure checkout and cart database).",
+        "see_all_link": "#",
+        "products": [
+          {
+            "id": "creative-design-models-sci-fi-drone"
+          },
+          {
+            "id": "falcon-joinery-wardrobe-cabinet"
+          },
+          {
+            "id": "coded-templates-portfolio-studio"
+          }
+        ]
+      },
+      {
+        "type": "unbeatable_deals",
+        "title": "Today's Deals - Unbeatable Price",
+        "subtitle": "High-tier architectural models & templates with maximum discounts",
+        "products": [
+          {
+            "id": "creative-design-models-sci-fi-drone",
+            "name": "High-Poly Sci-Fi Drone 3D Mesh Model",
+            "brand": "creative-design",
+            "brand_name": "Creative Design",
+            "price": 517000,
+            "old_price": 682000,
+            "discount": "-24%",
+            "items_left": 29,
+            "total_items": 100,
+            "image": "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=400&auto=format&fit=crop&q=80",
+            "slug": "highpoly-scifi-drone-mesh",
+            "niche": "models",
+            "merchandise": "scifi-models"
+          },
+          {
+            "id": "falcon-joinery-wardrobe-cabinet",
+            "name": "Modern Slatted Wardrobe Fabrication Plan",
+            "brand": "falcon-design",
+            "brand_name": "Falcon Design",
+            "price": 298800,
+            "old_price": 384000,
+            "discount": "-22%",
+            "items_left": 41,
+            "total_items": 100,
+            "image": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&auto=format&fit=crop&q=80",
+            "slug": "slatted-wardrobe-cabinet-mapping",
+            "niche": "joinery",
+            "merchandise": "wardrobe-panels"
+          },
+          {
+            "id": "coded-templates-portfolio-studio",
+            "name": "Premium React Portfolio & Studio Template",
+            "brand": "coded",
+            "brand_name": "Coded",
+            "price": 395000,
+            "old_price": 400000,
+            "discount": "-1%",
+            "items_left": 83,
+            "total_items": 100,
+            "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=400&auto=format&fit=crop&q=80",
+            "slug": "premium-react-studio-portfolio",
+            "niche": "templates",
+            "merchandise": "react-next-templates"
+          },
+          {
+            "id": "organic-flow-cad-shoe-tech-pack",
+            "name": "Futuristic Sneaker CAD Sole Tech Pack",
+            "brand": "organic-flow",
+            "brand_name": "Organic Flow",
+            "price": 650000,
+            "old_price": 680000,
+            "discount": "-4%",
+            "items_left": 57,
+            "total_items": 100,
+            "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80",
+            "slug": "futuristic-sneaker-cad-sole",
+            "niche": "clothing",
+            "merchandise": "footwear-tech-packs"
+          },
+          {
+            "id": "eggcellent-commercial-office-skyscraper",
+            "name": "40-Story Glass Skyscraper Revit Project",
+            "brand": "eggcellent-design",
+            "brand_name": "Eggcellent Design",
+            "price": 630000,
+            "old_price": 650000,
+            "discount": "-3%",
+            "items_left": 95,
+            "total_items": 100,
+            "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop&q=80",
+            "slug": "40story-glass-skyscraper-revit",
+            "niche": "commercial",
+            "merchandise": "office-structures"
+          }
+        ]
+      }
+    ]
+  },
+  "cart": {
+    "categories": [
+      { "name": "Cart Boosters", "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200&auto=format&fit=crop&q=80", "link": "#" },
+      { "name": "Add-on Blueprints", "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200&auto=format&fit=crop&q=80", "link": "#" },
+      { "name": "Best Asset Packs", "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200&auto=format&fit=crop&q=80", "link": "#" }
+    ],
+    "flash_sales": {
+      "title": "People Also Bought (Flash Deals)",
+      "subtitle": "Grab these highly relevant licenses before completing your checkout!",
+      "ends_at": "2026-12-31T23:59:59",
+      "products": [
+        {
+          "id": "falcon-joinery-kitchen-island",
+          "name": "Luxury Marble Kitchen Island CAD Model",
+          "brand": "falcon-design",
+          "brand_name": "Falcon Design",
+          "price": 16799,
+          "old_price": 19024,
+          "discount": "-12%",
+          "items_left": 5,
+          "total_items": 40,
+          "image": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400&auto=format&fit=crop&q=80",
+          "slug": "luxury-kitchen-island-mapping",
+          "niche": "joinery",
+          "merchandise": "kitchen-panels"
+        },
+        {
+          "id": "creative-graphics-wallpapers-synthwave",
+          "name": "Synthwave Sunset 8K Wallpaper Pack",
+          "brand": "creative",
+          "brand_name": "Creative",
+          "price": 12000,
+          "old_price": 22200,
+          "discount": "-46%",
+          "items_left": 18,
+          "total_items": 100,
+          "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&auto=format&fit=crop&q=80",
+          "slug": "synthwave-sunset-wallpapers",
+          "niche": "wallpapers",
+          "merchandise": "minimal-wallpapers"
+        },
+        {
+          "id": "upstudio-beats-cyberpunk-drive",
+          "name": "Synthwave Cyberpunk Dynamic Beat Pack",
+          "brand": "upstudio",
+          "brand_name": "UpStudio",
+          "price": 14500,
+          "old_price": 25000,
+          "discount": "-42%",
+          "items_left": 31,
+          "total_items": 100,
+          "image": "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?w=400&auto=format&fit=crop&q=80",
+          "slug": "cyberpunk-drive-wave-beats",
+          "niche": "beats",
+          "merchandise": "synthwave-beats"
+        }
+      ]
+    },
+    "deals_of_the_day": {
+      "title": "Cart Add-ons",
+      "products": [
+        { "name": "Audio Beat Packs", "price": "₦6,999", "image": "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?w=200&auto=format&fit=crop&q=80" },
+        { "name": "3D Blender Models", "price": "₦399,555", "image": "https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=200&auto=format&fit=crop&q=80" }
+      ]
+    },
+    "unbeatable_deals": {
+      "title": "Unbeatable Fast Checkout Recommendations",
+      "subtitle": "Get these highly-rated bundles with special checkout discounts",
+      "products": [
+        {
+          "id": "coded-templates-portfolio-studio",
+          "name": "Premium React Portfolio & Studio Template",
+          "brand": "coded",
+          "brand_name": "Coded",
+          "price": 395000,
+          "old_price": 400000,
+          "discount": "-1%",
+          "items_left": 10,
+          "total_items": 20,
+          "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=400&auto=format&fit=crop&q=80",
+          "slug": "premium-react-studio-portfolio",
+          "niche": "templates",
+          "merchandise": "react-next-templates"
+        },
+        {
+          "id": "falcon-joinery-wardrobe-cabinet",
+          "name": "Modern Slatted Wardrobe Fabrication Plan",
+          "brand": "falcon-design",
+          "brand_name": "Falcon Design",
+          "price": 298800,
+          "old_price": 384000,
+          "discount": "-22%",
+          "items_left": 15,
+          "total_items": 40,
+          "image": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&auto=format&fit=crop&q=80",
+          "slug": "slatted-wardrobe-cabinet-mapping",
+          "niche": "joinery",
+          "merchandise": "wardrobe-panels"
+        }
+      ]
+    }
+  },
+  "checkout": {
+    "categories": [
+      { "name": "Instant Add", "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=200&auto=format&fit=crop&q=80", "link": "#" },
+      { "name": "Special Offers", "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200&auto=format&fit=crop&q=80", "link": "#" }
+    ],
+    "flash_sales": {
+      "title": "Last Minute High-Discount Blueprints",
+      "subtitle": "Last chance to add verified structural files for custom projects",
+      "ends_at": "2026-12-31T23:59:59",
+      "products": [
+        {
+          "id": "eggcellent-residential-duplex-classic",
+          "name": "5-Bedroom Modern Duplex CAD Blueprint",
+          "brand": "eggcellent-design",
+          "brand_name": "Eggcellent Design",
+          "price": 28000,
+          "old_price": 44000,
+          "discount": "-36%",
+          "items_left": 3,
+          "total_items": 10,
+          "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&auto=format&fit=crop&q=80",
+          "slug": "classic-modern-duplex-cad",
+          "niche": "residential",
+          "merchandise": "duplex-blueprints"
+        },
+        {
+          "id": "falcon-joinery-kitchen-island",
+          "name": "Luxury Marble Kitchen Island CAD Model",
+          "brand": "falcon-design",
+          "brand_name": "Falcon Design",
+          "price": 16799,
+          "old_price": 19024,
+          "discount": "-12%",
+          "items_left": 2,
+          "total_items": 10,
+          "image": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400&auto=format&fit=crop&q=80",
+          "slug": "luxury-kitchen-island-mapping",
+          "niche": "joinery",
+          "merchandise": "kitchen-panels"
+        }
+      ]
+    },
+    "deals_of_the_day": {
+      "title": "Secure Download Addons",
+      "products": [
+        { "name": "Premium Web Themes", "price": "₦96,999", "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=200&auto=format&fit=crop&q=80" },
+        { "name": "Audio Beat Packs", "price": "₦6,999", "image": "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?w=200&auto=format&fit=crop&q=80" }
+      ]
+    },
+    "unbeatable_deals": {
+      "title": "Top-Tier Professional BLUEPRINTS",
+      "subtitle": "Ensure absolute design precision with our master verified skyscraper blueprint",
+      "products": [
+        {
+          "id": "eggcellent-commercial-office-skyscraper",
+          "name": "40-Story Glass Skyscraper Revit Project",
+          "brand": "eggcellent-design",
+          "brand_name": "Eggcellent Design",
+          "price": 630000,
+          "old_price": 650000,
+          "discount": "-3%",
+          "items_left": 4,
+          "total_items": 10,
+          "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop&q=80",
+          "slug": "40story-glass-skyscraper-revit",
+          "niche": "commercial",
+          "merchandise": "office-structures"
+        }
+      ]
+    }
+  }
+}

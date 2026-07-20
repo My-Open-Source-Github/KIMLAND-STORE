@@ -1428,7 +1428,7 @@ async function initPage() {
   }
   
   fixAllNavigationLinks();
-  populateBottomCarousels();
+  populateBottomStorefront();
 }
 
 // Render dynamic Breadcrumbs
@@ -2288,86 +2288,367 @@ function injectProductSchema(product) {
   document.head.appendChild(script);
 }
 
-// Columns-Stacked Product Scroll Carousels
-function renderCarousel(carouselId, productsList) {
-  const carousel = document.getElementById(carouselId);
-  if (!carousel) return;
-  
-  carousel.innerHTML = '';
-  
-  // Group products into columns of 3
-  const columns = [];
-  for (let i = 0; i < productsList.length; i += 3) {
-    columns.push(productsList.slice(i, i + 3));
+// Dynamic Countdown Timer Engine for Jumia-style Flash Sales (Supports Multiple Timers)
+function startFlashSaleCountdown() {
+  const timerElements = document.querySelectorAll('.flash-sale-countdown');
+  if (timerElements.length === 0) return;
+
+  function updateTimers() {
+    const now = new Date().getTime();
+
+    timerElements.forEach(el => {
+      const endsAtStr = el.getAttribute('data-ends');
+      let targetDate;
+      if (endsAtStr) {
+        targetDate = new Date(endsAtStr).getTime();
+      } else {
+        // Default to midnight tonight
+        const today = new Date();
+        targetDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1).getTime();
+      }
+
+      const distance = targetDate - now;
+      if (distance < 0) {
+        el.textContent = "Flash Sale Ended!";
+        return;
+      }
+
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      const pad = (num) => String(num).padStart(2, '0');
+      el.textContent = `${pad(hours)}h : ${pad(minutes)}m : ${pad(seconds)}s`;
+    });
   }
-  
-  columns.forEach(colProducts => {
-    const colDiv = document.createElement('div');
-    colDiv.className = 'carousel-column';
-    
-    colProducts.forEach(p => {
-      const productLink = getRouteLink(`/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`);
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      
-      card.innerHTML = `
-        <div class="product-img-wrapper">
-          <a href="${productLink}">
-            <img src="${p.images[0]}" alt="${p.name}" class="product-img" loading="lazy" referrerPolicy="no-referrer">
-          </a>
-          ${p.featured ? '<span class="product-badge">Featured</span>' : ''}
+
+  updateTimers();
+  setInterval(updateTimers, 1000);
+}
+
+// Render standard high-density catalog card html (Automatically merges global product metadata)
+function getCatalogProductCardHtml(p) {
+  let matched = null;
+  if (p.id && typeof allProducts !== 'undefined' && allProducts) {
+    matched = allProducts.find(item => item.id === p.id);
+  } else if (p.slug && typeof allProducts !== 'undefined' && allProducts) {
+    matched = allProducts.find(item => item.slug === p.slug);
+  }
+
+  if (matched) {
+    p = Object.assign({
+      brand: matched.brand,
+      brand_name: matched.brand_name || matched.brand,
+      name: matched.name,
+      price: matched.price,
+      old_price: matched.old_price,
+      discount: matched.old_price ? `-${Math.round((1 - matched.price / matched.old_price) * 100)}%` : '',
+      image: matched.images ? matched.images[0] : '',
+      slug: matched.slug,
+      niche: matched.niche,
+      merchandise: matched.merchandise
+    }, p);
+  }
+
+  // Try to find the actual product link from global products or build a dynamic fallback route
+  let productLink = '#';
+  if (p.slug && p.brand && p.niche && p.merchandise) {
+    productLink = getRouteLink(`/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`);
+  } else if (p.slug && p.brand) {
+    productLink = getRouteLink(`/brands/${p.brand}/${p.slug}/index.html`);
+  }
+
+  const itemsLeft = p.items_left || 12;
+  const totalItems = p.total_items || 100;
+  const fillPercentage = Math.round((itemsLeft / totalItems) * 100);
+
+  const priceFormatted = typeof p.price === 'number' ? formatCurrency(p.price, p.currency) : p.price;
+  const oldPriceHtml = p.old_price ? `<span class="old-price">${typeof p.old_price === 'number' ? formatCurrency(p.old_price, p.currency) : p.old_price}</span>` : '';
+
+  return `
+    <div class="catalog-product-card">
+      <div class="img-wrapper">
+        <a href="${productLink}">
+          <img src="${p.image || (p.images ? p.images[0] : '')}" alt="${p.name}" loading="lazy" referrerPolicy="no-referrer">
+        </a>
+        ${p.discount ? `<span class="discount-tag">${p.discount}</span>` : ''}
+      </div>
+      <div class="card-info">
+        <div class="brand-label">${p.brand_name || p.brand || 'KIMLAND'}</div>
+        <h4 class="title"><a href="${productLink}">${p.name}</a></h4>
+        <div class="price-row">
+          <span class="price">${priceFormatted}</span>
+          ${oldPriceHtml}
         </div>
-        <div class="product-info">
-          <div>
-            <h3 class="product-title"><a href="${productLink}" title="${p.name}">${p.name}</a></h3>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${fillPercentage}%"></div>
           </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 0.25rem;">
-            <div class="product-price-wrapper">
-              <span class="product-price">${formatCurrency(p.price, p.currency)}</span>
-              ${p.old_price ? `<span class="product-old-price">${formatCurrency(p.old_price, p.currency)}</span>` : ''}
+          <span class="progress-text">${itemsLeft} items left</span>
+        </div>
+        <button class="buy-button add-to-cart-btn" data-id="${p.id || p.slug}">Add To Cart</button>
+      </div>
+    </div>
+  `;
+}
+
+// Render a single bottom storefront section dynamically
+function renderBottomSection(section) {
+  if (!section) return '';
+
+  let html = '';
+
+  if (section.type === 'categories') {
+    const items = section.items || [];
+    if (items.length > 0) {
+      html += `
+        <div class="category-pill-row">
+          ${items.map(c => `
+            <div class="category-pill-card" onclick="window.scrollTo({top: 400, behavior: 'smooth'})">
+              <div class="img-container">
+                <img src="${c.image}" alt="${c.name}" loading="lazy" referrerPolicy="no-referrer">
+              </div>
+              <span>${c.name}</span>
             </div>
-            <button class="add-to-cart-btn inline-cart-btn" data-id="${p.id}" title="Add to Cart" style="background: var(--color-primary); color: white; border: none; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-            </button>
+          `).join('')}
+        </div>
+      `;
+    }
+  } 
+  else if (section.type === 'deals_of_the_day') {
+    const products = section.products || [];
+    if (products.length > 0) {
+      html += `
+        <div class="deals-of-the-day-section">
+          <div class="deals-banner-card">
+            ${section.title || 'DEALS OF THE DAY'}
+            <span>TOP VALUES</span>
+          </div>
+          <div class="deals-circles-container">
+            ${products.map(p => `
+              <div class="deal-circle-card" onclick="window.scrollTo({top: 600, behavior: 'smooth'})">
+                <div class="circle-img-wrapper">
+                  <img src="${p.image}" alt="${p.name}" loading="lazy" referrerPolicy="no-referrer">
+                </div>
+                <span class="circle-price">${p.price}</span>
+                <span class="circle-name">${p.name}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div class="deals-banner-card" style="background: var(--color-primary);">
+            KIMLAND STORES
+            <span>VERIFIED ONLY</span>
           </div>
         </div>
       `;
-      colDiv.appendChild(card);
-    });
-    
-    carousel.appendChild(colDiv);
+    }
+  }
+  else {
+    // Default or custom catalog styles (including flash_sales, unbeatable_deals, custom sections)
+    const products = section.products || [];
+    if (products.length > 0) {
+      // Determine default colors for standard sections if not overridden
+      let bannerColor = section.banner_color;
+      if (!bannerColor) {
+        if (section.type === 'flash_sales') {
+          bannerColor = 'linear-gradient(90deg, #d21a00 0%, #ff4b2b 100%)';
+        } else if (section.type === 'unbeatable_deals') {
+          bannerColor = 'linear-gradient(90deg, #ed017f 0%, #ff007f 100%)';
+        } else {
+          bannerColor = 'linear-gradient(90deg, #0f172a 0%, #334155 100%)'; // Sleek slate fallback
+        }
+      }
+
+      const endsAtAttr = section.ends_at ? ` data-ends="${section.ends_at}"` : '';
+      const timerHtml = (section.ends_at || section.type === 'flash_sales') ? `
+        <div class="banner-timer">
+          Time Left: <span class="flash-sale-countdown"${endsAtAttr}>Calculating...</span>
+        </div>
+      ` : '';
+
+      const icon = section.icon || (section.type === 'flash_sales' ? '⚡' : section.type === 'unbeatable_deals' ? '🔴' : '✨');
+
+      html += `
+        <div class="bottom-section-banner" style="background: ${bannerColor}">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <h3 style="margin: 0; display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase;">
+              ${icon} ${section.title || 'Today\'s Deals'}
+            </h3>
+            ${section.subtitle ? `<p style="margin: 0; font-size: 0.75rem; opacity: 0.9; font-weight: 500;">${section.subtitle}</p>` : ''}
+          </div>
+          ${timerHtml}
+          <a href="${section.see_all_link || '#'}" class="see-all-link">See All &gt;</a>
+        </div>
+        ${section.description ? `
+          <div class="section-custom-description" style="background: #f8fafc; border-left: 4px solid var(--color-primary); padding: 0.75rem 1rem; border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); font-size: 0.8rem; color: var(--color-text-dark); line-height: 1.5; margin-bottom: 0.5rem; border-radius: 0 0 4px 4px;">
+            ${section.description}
+          </div>
+        ` : ''}
+        <div class="store-catalog-grid">
+          ${products.map(p => getCatalogProductCardHtml(p)).join('')}
+        </div>
+      `;
+    }
+  }
+
+  return html;
+}
+
+// Global Bottom storefront loader
+async function populateBottomStorefront() {
+  const container = document.getElementById('global-bottom-store-sections');
+  if (!container) return;
+
+  // Let's identify the current page context
+  const context = parseUrlSlugs();
+  let pageKey = 'home';
+  if (context.type === 'cart') pageKey = 'cart';
+  else if (context.type === 'checkout') pageKey = 'checkout';
+  else if (context.brand) pageKey = context.brand;
+
+  let pageData = null;
+
+  try {
+    const url = `${basePath}data/bottom_store_data.json`;
+    const response = await fetch(url);
+    if (response.ok) {
+      const bottomStoreData = await response.json();
+      if (bottomStoreData[pageKey]) {
+        pageData = bottomStoreData[pageKey];
+      } else if (bottomStoreData.brands && bottomStoreData.brands[pageKey]) {
+        pageData = bottomStoreData.brands[pageKey];
+      } else {
+        pageData = bottomStoreData.home; // Fallback to home config
+      }
+    }
+  } catch (err) {
+    console.error("Error loading bottom store data:", err);
+  }
+
+  // Fallback generation if no config found or loaded
+  if (!pageData) {
+    // Generate pageData dynamically using allProducts to guarantee active, independent, continuous data!
+    const filteredProducts = allProducts.filter(p => p.brand === (context.brand || p.brand));
+    const flashList = filteredProducts.slice(0, 6).map(p => ({
+      id: p.id,
+      name: p.name,
+      brand: p.brand,
+      brand_name: p.brand_name,
+      price: p.price,
+      old_price: p.old_price || Math.round(p.price * 1.3),
+      discount: p.old_price ? `-${Math.round((1 - p.price/p.old_price)*100)}%` : '-25%',
+      items_left: Math.floor(Math.random() * 20) + 5,
+      total_items: 50,
+      image: p.images[0],
+      slug: p.slug,
+      niche: p.niche,
+      merchandise: p.merchandise
+    }));
+
+    const circleList = filteredProducts.slice(6, 11).map(p => ({
+      name: p.name,
+      price: formatCurrency(p.price),
+      image: p.images[0]
+    }));
+
+    const unbeatableList = filteredProducts.slice(11, 17).map(p => ({
+      id: p.id,
+      name: p.name,
+      brand: p.brand,
+      brand_name: p.brand_name,
+      price: p.price,
+      old_price: p.old_price || Math.round(p.price * 1.25),
+      discount: p.old_price ? `-${Math.round((1 - p.price/p.old_price)*100)}%` : '-20%',
+      items_left: Math.floor(Math.random() * 30) + 10,
+      total_items: 100,
+      image: p.images[0],
+      slug: p.slug,
+      niche: p.niche,
+      merchandise: p.merchandise
+    }));
+
+    pageData = {
+      categories: [
+        { "name": "Hot Deals", "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=200&auto=format&fit=crop&q=80" },
+        { "name": "Best Sellers", "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200&auto=format&fit=crop&q=80" },
+        { "name": "Featured", "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200&auto=format&fit=crop&q=80" }
+      ],
+      flash_sales: {
+        title: "Flash Sales",
+        subtitle: "Highly popular structural blueprints and items, limited stock",
+        products: flashList
+      },
+      deals_of_the_day: {
+        title: "Deals of the Day",
+        products: circleList
+      },
+      unbeatable_deals: {
+        title: "Today's Deals - Unbeatable Price",
+        subtitle: "Premium assets with exclusive, time-restricted prices",
+        products: unbeatableList
+      }
+    };
+  }
+
+  // Parse sections (with full backward compatibility for direct properties)
+  let sections = pageData.sections;
+  if (!sections) {
+    sections = [];
+    if (pageData.categories) {
+      sections.push({ type: 'categories', items: pageData.categories });
+    }
+    if (pageData.flash_sales) {
+      sections.push({ 
+        type: 'flash_sales', 
+        title: pageData.flash_sales.title, 
+        subtitle: pageData.flash_sales.subtitle,
+        ends_at: pageData.flash_sales.ends_at,
+        products: pageData.flash_sales.products 
+      });
+    }
+    if (pageData.deals_of_the_day) {
+      sections.push({ 
+        type: 'deals_of_the_day', 
+        title: pageData.deals_of_the_day.title, 
+        products: pageData.deals_of_the_day.products 
+      });
+    }
+    if (pageData.unbeatable_deals) {
+      sections.push({ 
+        type: 'unbeatable_deals', 
+        title: pageData.unbeatable_deals.title, 
+        subtitle: pageData.unbeatable_deals.subtitle,
+        products: pageData.unbeatable_deals.products 
+      });
+    }
+  }
+
+  // Build the complete layout continuously
+  let html = '';
+  sections.forEach(section => {
+    html += renderBottomSection(section);
   });
-  
-  // Attach add-to-cart click events
-  carousel.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+
+  container.innerHTML = html;
+
+  // Bind add-to-cart clicks for the dynamically rendered buttons
+  container.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       const id = e.currentTarget.getAttribute('data-id');
-      addToCart(id, 1);
+      
+      // If the ID is a slug, try to match to a real product ID
+      let finalId = id;
+      const match = allProducts.find(item => item.slug === id || item.id === id);
+      if (match) finalId = match.id;
+
+      addToCart(finalId, 1);
     });
   });
-}
 
-function populateBottomCarousels() {
-  const featuredCarousel = document.getElementById('featured-carousel');
-  const trendingCarousel = document.getElementById('trending-carousel');
-  
-  if (typeof allProducts !== 'undefined' && allProducts && allProducts.length > 0) {
-    if (featuredCarousel) {
-      // In-Demand Assets: We group 30 products to get exactly 10 columns of 3 cards (4 visible initially, 6 scrollable extra columns)
-      const featuredProducts = allProducts.filter(p => p.featured);
-      const remainingProducts = allProducts.filter(p => !p.featured);
-      const inDemandList = [...featuredProducts, ...remainingProducts].slice(0, 30);
-      renderCarousel('featured-carousel', inDemandList);
-    }
-    
-    if (trendingCarousel) {
-      // Trending Products: We take a different reversed ordering to make the catalogs diverse
-      const trendingList = [...allProducts].reverse().slice(0, 30);
-      renderCarousel('trending-carousel', trendingList);
-    }
-  }
+  // Start the countdown timer engine
+  startFlashSaleCountdown();
 }
 
 // Run Engine on Load

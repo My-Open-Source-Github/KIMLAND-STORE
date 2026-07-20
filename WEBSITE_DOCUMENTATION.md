@@ -7,11 +7,12 @@ Welcome to the **KIMLAND Store** Master Operations and Management Guide. This do
 ## 📖 Table of Contents
 1. [System Architecture Overview](#1-system-architecture-overview)
 2. [Adding & Editing Products (`products.json`)](#2-adding--editing-products-productsjson)
-3. [Managing Brands (`store.js`)](#3-managing-brands-storejs)
-4. [Paystack Payment Dashboard Setup (14+ Brands)](#4-paystack-payment-dashboard-setup-14-brands)
-5. [Cloudflare Deployment & Domain Management](#5-cloudflare-deployment--domain-management)
-6. [Local Development, Building & Running](#6-local-development-building--running)
-7. [GitHub Synchronization & `CNAME` Preservation](#7-github-synchronization--cname-preservation)
+3. [Managing Jumia & Konga Style Bottom Storefront (`bottom_store_data.json`)](#3-managing-jumia--konga-style-bottom-storefront-bottom_store_datajson)
+4. [Managing Brands (`store.js`)](#4-managing-brands-storejs)
+5. [Paystack Payment Dashboard Setup (14+ Brands)](#5-paystack-payment-dashboard-setup-14-brands)
+6. [Cloudflare Deployment & Domain Management](#6-cloudflare-deployment--domain-management)
+7. [Local Development, Building & Running](#7-local-development-building--running)
+8. [GitHub Synchronization & `CNAME` Preservation](#8-github-synchronization--cname-preservation)
 
 ---
 
@@ -71,7 +72,7 @@ To add a new product or edit an existing one, open `/data/products.json` and add
 3. **`brand`**: Must exactly match the brand identifier key defined in `/assets/js/store.js` (e.g., `creative`, `diy`, `coded`).
 4. **`niche` & `merchandise`**: Internal category routing slugs.
 5. **`price` & `old_price`**: Numeric values in Naira (do not include commas or currency symbols here).
-6. **`featured`**: Set to `true` to display this product in the global bottom "In-Demand Assets" and "Trending Products" carousels. Set to `false` otherwise.
+6. **`featured`**: Set to `true` to prioritize this product in dynamic fallbacks for the Jumia & Konga-style bottom storefront pages if custom products are not explicitly set in `bottom_store_data.json`.
 7. **`images`**: An array of image URLs (either absolute paths or relative paths in your repository).
 8. **`youtube`**: To embed a product demonstration or review video, paste the YouTube embed URL (e.g. `https://www.youtube.com/embed/[video_id]`). If left blank, the system will gracefully hide the video player tab.
 9. **`description`**: Supports full raw HTML markup (like `<p>`, `<ul>`, `<li>`, `<strong>`) so you can craft detailed, responsive descriptions.
@@ -79,7 +80,143 @@ To add a new product or edit an existing one, open `/data/products.json` and add
 
 ---
 
-## 3. Managing Brands (`store.js`)
+---
+
+## 3. Managing Jumia & Konga Style Bottom Storefront (`bottom_store_data.json`)
+
+To replace the old, bulky product carousels, KIMLAND now features a highly polished e-commerce catalog layout at the bottom of pages, styled directly after **Jumia** and **Konga**. Each section, image, title, and item is fully responsive (scaling perfectly on mobile view in three compact columns, and up to six columns on desktop with absolutely no vertical/horizontal cut-offs).
+
+This bottom layout fetches its data from `/data/bottom_store_data.json`. This configuration allows you to completely edit, manage, and add custom products, countdown timers, category roundels, and flash banners independently for each page (e.g. your home page, cart, checkout, or brand specific views) from Cloudflare or direct file editing!
+
+### 📂 Bottom Storefront Schema Structure:
+The schema separates configurations by page key: `"home"`, `"cart"`, `"checkout"`, and individual brand slugs under `"brands"` (e.g. `"creative"`, `"alpaca"`, `"diy"`).
+
+#### Configuration JSON Template:
+```json
+{
+  "home": {
+    "categories": [
+      {
+        "name": "Design Packs",
+        "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200&auto=format&fit=crop&q=80"
+      }
+    ],
+    "flash_sales": {
+      "title": "Flash Sales",
+      "subtitle": "Limited assets, huge discount, ticks down to zero!",
+      "ends_at": "2026-12-31T23:59:59Z",
+      "products": [
+        {
+          "id": "creative-graphics-wallpapers-synthwave",
+          "name": "Synthwave Sunset 8K Wallpapers",
+          "brand": "creative",
+          "brand_name": "Creative",
+          "price": 12000,
+          "old_price": 15000,
+          "discount": "-20%",
+          "items_left": 14,
+          "total_items": 50,
+          "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&auto=format&fit=crop&q=80"
+        }
+      ]
+    },
+    "deals_of_the_day": {
+      "title": "Deals of the Day",
+      "products": [
+        {
+          "name": "CAD Blueprint",
+          "price": "₦45,000",
+          "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200"
+        }
+      ]
+    },
+    "unbeatable_deals": {
+      "title": "Today's Deals - Unbeatable Price",
+      "products": [
+        {
+          "id": "alpaca-schematic-pcb-led",
+          "name": "Custom PCB IoT Schematic",
+          "brand": "alpaca",
+          "brand_name": "Alpaca",
+          "price": 32000,
+          "old_price": 40000,
+          "discount": "-20%",
+          "items_left": 4,
+          "total_items": 10,
+          "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400"
+        }
+      ]
+    }
+  }
+}
+```
+
+### 💡 Keys & Management Guide:
+1. **`categories` (Pill roundels)**: Displays a horizontal scrolling ribbon of circular categories (like Jumia's top ribbon) with a custom image and a title. Excellent for brand navigation!
+2. **`flash_sales` (Jumia Style Red Box)**: 
+   - **`ends_at`**: Set any future date-time. The built-in Javascript countdown engine automatically calculates remaining time and displays a live ticking clock (e.g., `01h : 09m : 49s`). If left blank or past, it automatically defaults to midnight tonight so the site always looks extremely alive!
+   - **`items_left` & `total_items`**: Automatically renders a premium graphical horizontal progress bar showing how much stock is left (e.g., `14 items left`, progress bar 28% full).
+3. **`deals_of_the_day` (Bento layout with white roundel items)**: Renders elegant, custom circular items with high-contrast price badges underneath.
+4. **`unbeatable_deals` (Konga Style Magenta Box)**: Displays high-density product items with percentage discounts, high-contrast badges, brand labels, titles, price pairings, and add-to-cart buttons.
+5. **Dynamic Independent Fallbacks**: If you create a brand but do not define custom storefront items for it inside `bottom_store_data.json`, our intelligent, high-density engine **automatically generates** an independent, unique Jumia/Konga catalog using items belonging to that brand from `products.json`! This ensures 100% catalog coverage across every page on the store with zero maintenance!
+
+---
+
+### 🚀 Dynamic Layout Sections & Custom Category Creation
+
+KIMLAND now supports a fully modular, array-based configuration using the **`sections`** attribute inside `bottom_store_data.json`. This empowers you to build infinite custom sections, custom write-ups, change the sorting order, and determine the exact position/location of sections on the fly!
+
+#### 🛠️ Creating Custom Categories (Step-by-Step):
+
+To configure a page's bottom area with custom categories and specify their exact display order, add a `"sections"` array to the page's JSON key:
+
+```json
+"home": {
+  "sections": [
+    {
+      "type": "categories",
+      "items": [
+        { "name": "Hot Blueprints", "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200" }
+      ]
+    },
+    {
+      "type": "custom_catalog",
+      "title": "Mega Structural Deals",
+      "subtitle": "Premium licenses at special discount rates",
+      "icon": "💎",
+      "banner_color": "linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%)",
+      "description": "Welcome to our customized Jumia/Konga category bento. This area supports rich descriptions, custom gradients, and direct add-to-cart flows synchronized automatically with our global secure checkout database.",
+      "ends_at": "2026-11-30T12:00:00",
+      "see_all_link": "#",
+      "products": [
+        { "id": "creative-design-models-sci-fi-drone" },
+        { "id": "falcon-joinery-wardrobe-cabinet" }
+      ]
+    }
+  ]
+}
+```
+
+#### 📐 Advanced Section Configurations:
+
+| Field Name | Description / Values |
+| :--- | :--- |
+| **`type`** | Set to `"categories"`, `"deals_of_the_day"`, `"flash_sales"`, `"unbeatable_deals"`, or `"custom_catalog"`. |
+| **`title`** | Custom primary header string for your section banner. |
+| **`subtitle`** | Brief scannable write-up/subtitle printed directly under the header. |
+| **`description`** | Custom paragraph write-up block describing the category or offer details. Supports rich copy! |
+| **`icon`** | Choose a custom illustration emoji (e.g. `⚡`, `🔴`, `💎`, `🔥`) to display next to your header. |
+| **`banner_color`** | Any valid CSS color or gradient (e.g. `linear-gradient(90deg, #d21a00, #ff4b2b)`). |
+| **`ends_at`** | Optional target timestamp. If supplied, the system automatically starts a live countdown specifically for this category! |
+| **`products`** | Array of product descriptors. **Note:** You can simply provide the product `"id"`, and our smart engine will automatically merge all details (titles, images, real price, discounts) from the global database! |
+
+#### 🔀 Adjusting Section Locations & Positions:
+
+To move a section, simply rearrange its block in the `"sections"` list. The system loops through each block sequentially, allowing you to position your custom categories exactly where they belong in the bottom storefront area!
+
+---
+
+## 4. Managing Brands (`store.js`)
 
 KIMLAND supports **14 specialized subsidiary brands**:
 1. `creative` (Creative 2D Art, UI/UX Kits)
@@ -123,7 +260,7 @@ If you want to introduce a **15th brand** (or more), simply:
 
 ---
 
-## 4. Paystack Payment Dashboard Setup (14+ Brands)
+## 5. Paystack Payment Dashboard Setup (14+ Brands)
 
 To support **14 separate Paystack accounts (14 different dashboards)**, the website implements a dynamic backend routing system.
 
@@ -163,7 +300,7 @@ Whenever you add a brand to `/assets/js/store.js`, add a matching key block at t
 
 ---
 
-## 5. Cloudflare Deployment & Domain Management
+## 6. Cloudflare Deployment & Domain Management
 
 KIMLAND is fully compatible with **Cloudflare**, providing ultra-fast content delivery, global DNS routing, DDoS protection, and SSL/TLS encryption.
 
@@ -195,7 +332,7 @@ If you deploy the static portion of your store to Cloudflare Pages:
 
 ---
 
-## 6. Local Development, Building & Running
+## 7. Local Development, Building & Running
 
 To run the application locally on your computer for editing and testing:
 
@@ -226,7 +363,7 @@ npm run start
 
 ---
 
-## 7. GitHub Synchronization & `CNAME` Preservation
+## 8. GitHub Synchronization & `CNAME` Preservation
 
 We have resolved the problem where GitHub deleted your custom domain file on every commit!
 
