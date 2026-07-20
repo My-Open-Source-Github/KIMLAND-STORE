@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config();
 
@@ -27,12 +28,50 @@ async function startServer() {
         return res.status(400).json({ error: "Missing required parameters: email, amount" });
       }
 
-      const secretKey = process.env.PAYSTACK_SECRET_KEY;
       const appUrl = process.env.APP_URL || `http://localhost:${PORT}`;
 
-      // If no secret key is configured, return a mock redirect URL that allows testing the full checkout cycle
-      if (!secretKey || secretKey === "MY_PAYSTACK_SECRET_KEY" || secretKey === "") {
-        console.log("No PAYSTACK_SECRET_KEY found. Simulating payment sandbox redirect...");
+      // 1. Try to load per-brand Paystack configuration
+      let brandId = "";
+      if (items && Array.isArray(items) && items.length > 0) {
+        brandId = items[0].brand || "";
+      }
+
+      let secretKey = "";
+
+      const configPath = path.join(process.cwd(), "data", "paystack_configs.json");
+      if (brandId && fs.existsSync(configPath)) {
+        try {
+          const configContent = fs.readFileSync(configPath, "utf-8");
+          const brandConfigs = JSON.parse(configContent);
+          if (brandConfigs[brandId]) {
+            const bConfig = brandConfigs[brandId];
+            const mode = bConfig.mode || "test";
+            const keyToUse = mode === "live" ? bConfig.live_secret_key : bConfig.test_secret_key;
+            
+            // If it's not a placeholder, use it!
+            if (keyToUse && !keyToUse.startsWith("YOUR_") && keyToUse.trim() !== "") {
+              secretKey = keyToUse;
+              console.log(`Using Paystack configuration from JSON config for brand: ${brandId} (Mode: ${mode})`);
+            }
+          }
+        } catch (err) {
+          console.error("Error reading or parsing paystack_configs.json:", err);
+        }
+      }
+
+      // 2. Fallback to general environment variable
+      if (!secretKey) {
+        secretKey = process.env.PAYSTACK_SECRET_KEY || "";
+        if (secretKey && !secretKey.startsWith("YOUR_") && secretKey !== "MY_PAYSTACK_SECRET_KEY") {
+          console.log("Using global default PAYSTACK_SECRET_KEY from environment variables");
+        } else {
+          secretKey = ""; // Ensure empty if it's a placeholder
+        }
+      }
+
+      // If no valid secret key is configured, return a mock redirect URL that allows testing the full checkout cycle
+      if (!secretKey || secretKey === "") {
+        console.log(`No valid PAYSTACK_SECRET_KEY found for brand '${brandId || "unknown"}'. Simulating payment sandbox redirect...`);
         const mockSuccessUrl = `${appUrl}/cart/index.html?payment=success&ref=MOCK_REF_${Date.now()}`;
         return res.json({ authorization_url: mockSuccessUrl });
       }

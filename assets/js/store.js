@@ -1428,6 +1428,7 @@ async function initPage() {
   }
   
   fixAllNavigationLinks();
+  populateBottomCarousels();
 }
 
 // Render dynamic Breadcrumbs
@@ -1826,47 +1827,7 @@ function renderDynamicPage(context, container, breadcrumbsContainer) {
 
 // Homepage Engine
 function initHomepage() {
-  const carousel = document.getElementById('featured-carousel');
-  if (carousel) {
-    carousel.innerHTML = '';
-    const featured = allProducts.filter(p => p.featured);
-    featured.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      const productLink = getRouteLink(`/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`);
-      
-      card.innerHTML = `
-        <div class="product-img-wrapper">
-          <a href="${productLink}">
-            <img src="${p.images[0]}" alt="${p.name}" class="product-img" loading="lazy">
-          </a>
-          <span class="product-badge">Featured</span>
-        </div>
-        <div class="product-info">
-          <div>
-            <div class="product-meta">${p.brand_name}</div>
-            <h3 class="product-title"><a href="${productLink}">${p.name}</a></h3>
-          </div>
-          <div>
-            <div class="product-price-wrapper">
-              <span class="product-price">${formatCurrency(p.price, p.currency)}</span>
-              ${p.old_price ? `<span class="product-old-price">${formatCurrency(p.old_price, p.currency)}</span>` : ''}
-            </div>
-            <button class="btn btn-dark w-full add-to-cart-btn" data-id="${p.id}">Add To Cart</button>
-          </div>
-        </div>
-      `;
-      carousel.appendChild(card);
-    });
-    
-    // Attach click events
-    carousel.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = e.target.getAttribute('data-id');
-        addToCart(id, 1);
-      });
-    });
-  }
+  // Handled globally by populateBottomCarousels inside initPage()
 }
 
 // Brand Homepage Engine
@@ -2284,7 +2245,8 @@ function initCheckoutPage() {
         id: item.id,
         name: item.name,
         qty: item.qty,
-        price: item.price
+        price: item.price,
+        brand: item.brand
       }));
       
       await paystackCheckout(email, total, itemsList);
@@ -2324,6 +2286,88 @@ function injectProductSchema(product) {
   
   script.text = JSON.stringify(schema);
   document.head.appendChild(script);
+}
+
+// Columns-Stacked Product Scroll Carousels
+function renderCarousel(carouselId, productsList) {
+  const carousel = document.getElementById(carouselId);
+  if (!carousel) return;
+  
+  carousel.innerHTML = '';
+  
+  // Group products into columns of 3
+  const columns = [];
+  for (let i = 0; i < productsList.length; i += 3) {
+    columns.push(productsList.slice(i, i + 3));
+  }
+  
+  columns.forEach(colProducts => {
+    const colDiv = document.createElement('div');
+    colDiv.className = 'carousel-column';
+    
+    colProducts.forEach(p => {
+      const productLink = getRouteLink(`/brands/${p.brand}/${p.niche}/${p.merchandise}/${p.slug}/index.html`);
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      
+      card.innerHTML = `
+        <div class="product-img-wrapper">
+          <a href="${productLink}">
+            <img src="${p.images[0]}" alt="${p.name}" class="product-img" loading="lazy" referrerPolicy="no-referrer">
+          </a>
+          ${p.featured ? '<span class="product-badge">Featured</span>' : ''}
+        </div>
+        <div class="product-info">
+          <div>
+            <h3 class="product-title"><a href="${productLink}" title="${p.name}">${p.name}</a></h3>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 0.25rem;">
+            <div class="product-price-wrapper">
+              <span class="product-price">${formatCurrency(p.price, p.currency)}</span>
+              ${p.old_price ? `<span class="product-old-price">${formatCurrency(p.old_price, p.currency)}</span>` : ''}
+            </div>
+            <button class="add-to-cart-btn inline-cart-btn" data-id="${p.id}" title="Add to Cart" style="background: var(--color-primary); color: white; border: none; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+            </button>
+          </div>
+        </div>
+      `;
+      colDiv.appendChild(card);
+    });
+    
+    carousel.appendChild(colDiv);
+  });
+  
+  // Attach add-to-cart click events
+  carousel.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const id = e.currentTarget.getAttribute('data-id');
+      addToCart(id, 1);
+    });
+  });
+}
+
+function populateBottomCarousels() {
+  const featuredCarousel = document.getElementById('featured-carousel');
+  const trendingCarousel = document.getElementById('trending-carousel');
+  
+  if (typeof allProducts !== 'undefined' && allProducts && allProducts.length > 0) {
+    if (featuredCarousel) {
+      // In-Demand Assets: We group 30 products to get exactly 10 columns of 3 cards (4 visible initially, 6 scrollable extra columns)
+      const featuredProducts = allProducts.filter(p => p.featured);
+      const remainingProducts = allProducts.filter(p => !p.featured);
+      const inDemandList = [...featuredProducts, ...remainingProducts].slice(0, 30);
+      renderCarousel('featured-carousel', inDemandList);
+    }
+    
+    if (trendingCarousel) {
+      // Trending Products: We take a different reversed ordering to make the catalogs diverse
+      const trendingList = [...allProducts].reverse().slice(0, 30);
+      renderCarousel('trending-carousel', trendingList);
+    }
+  }
 }
 
 // Run Engine on Load

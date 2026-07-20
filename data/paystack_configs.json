@@ -1,0 +1,100 @@
+{
+  "creative": {
+    "test_secret_key": "YOUR_CREATIVE_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_CREATIVE_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_CREATIVE_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_CREATIVE_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "creative3d": {
+    "test_secret_key": "YOUR_CREATIVE3D_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_CREATIVE3D_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_CREATIVE3D_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_CREATIVE3D_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "creative2d": {
+    "test_secret_key": "YOUR_CREATIVE2D_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_CREATIVE2D_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_CREATIVE2D_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_CREATIVE2D_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "creative-design": {
+    "test_secret_key": "YOUR_CREATIVE_DESIGN_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_CREATIVE_DESIGN_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_CREATIVE_DESIGN_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_CREATIVE_DESIGN_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "falcon-design": {
+    "test_secret_key": "YOUR_FALCON_DESIGN_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_FALCON_DESIGN_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_FALCON_DESIGN_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_FALCON_DESIGN_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "eggcellent-design": {
+    "test_secret_key": "YOUR_EGGCELLENT_DESIGN_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_EGGCELLENT_DESIGN_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_EGGCELLENT_DESIGN_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_EGGCELLENT_DESIGN_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "upstudio": {
+    "test_secret_key": "YOUR_UPSTUDIO_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_UPSTUDIO_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_UPSTUDIO_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_UPSTUDIO_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "alpaca": {
+    "test_secret_key": "YOUR_ALPACA_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_ALPACA_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_ALPACA_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_ALPACA_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "coded": {
+    "test_secret_key": "YOUR_CODED_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_CODED_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_CODED_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_CODED_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "organic-flow": {
+    "test_secret_key": "YOUR_ORGANIC_FLOW_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_ORGANIC_FLOW_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_ORGANIC_FLOW_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_ORGANIC_FLOW_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "mindshot": {
+    "test_secret_key": "YOUR_MINDSHOT_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_MINDSHOT_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_MINDSHOT_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_MINDSHOT_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "lightwork": {
+    "test_secret_key": "YOUR_LIGHTWORK_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_LIGHTWORK_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_LIGHTWORK_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_LIGHTWORK_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "diy": {
+    "test_secret_key": "YOUR_DIY_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_DIY_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_DIY_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_DIY_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  },
+  "enlightener": {
+    "test_secret_key": "YOUR_ENLIGHTENER_TEST_SECRET_KEY",
+    "test_public_key": "YOUR_ENLIGHTENER_TEST_PUBLIC_KEY",
+    "live_secret_key": "YOUR_ENLIGHTENER_LIVE_SECRET_KEY",
+    "live_public_key": "YOUR_ENLIGHTENER_LIVE_PUBLIC_KEY",
+    "mode": "test"
+  }
+}

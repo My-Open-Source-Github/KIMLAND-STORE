@@ -211,17 +211,6 @@
           </div>
         </section>
 
-        <!-- Featured Products Carousel -->
-        <section class="products-section container" id="featured" style="margin-bottom: 4rem;">
-          <h2>In-Demand Assets</h2>
-          <p class="text-muted" style="margin-bottom: 2rem;">Trending licenses and design assets available for instant download</p>
-          
-          <div class="carousel-wrapper" id="featured-carousel">
-            <!-- Products injected by store.js dynamically -->
-            <div style="text-align: center; padding: 2rem; width: 100%;" class="text-muted">Loading KIMLAND assets...</div>
-          </div>
-        </section>
-
         <!-- Why Us Section -->
         <section class="why-us" id="why-us-benefits" style="margin-bottom: 4rem;">
           <div class="container">
@@ -261,6 +250,25 @@
       <div id="dynamic-view" class="container" style="display: none; min-height: 60vh; padding-top: 2rem; padding-bottom: 4rem;">
         <!-- Loaded dynamically by store.js depending on URL -->
       </div>
+
+      <!-- Unified Global Bottom Carousels (In-Demand Assets & Trending) -->
+      <section class="products-section container" id="featured" style="margin-top: 4rem; margin-bottom: 4rem;">
+        <h2>In-Demand Assets</h2>
+        <p class="text-muted" style="margin-bottom: 2rem;">Trending licenses and design assets available for instant download</p>
+        
+        <div class="carousel-wrapper" id="featured-carousel">
+          <div style="text-align: center; padding: 2rem; width: 100%;" class="text-muted">Loading KIMLAND assets...</div>
+        </div>
+      </section>
+
+      <section class="products-section container" id="trending-section" style="margin-bottom: 4rem;">
+        <h2>Trending Products</h2>
+        <p class="text-muted" style="margin-bottom: 2rem;">Top-rated licenses and blueprints from across our portfolio</p>
+        
+        <div class="carousel-wrapper" id="trending-carousel">
+          <div style="text-align: center; padding: 2rem; width: 100%;" class="text-muted">Loading trending assets...</div>
+        </div>
+      </section>
 
     </main>
 
